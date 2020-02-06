@@ -19,9 +19,9 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-  name: string.isRequired,
   onChange: func.isRequired,
-  value: string.isRequired,
+  name: string,
+  value: string,
   placeholder: string,
   className: string,
 };

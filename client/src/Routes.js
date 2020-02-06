@@ -14,7 +14,7 @@ const Routes = ({ history }) => {
           <Route path="*">
             <Redirect
               to={{
-                pathname: '/app/ops',
+                pathname: '/ops',
                 state: {
                   referrer: window && window.location.href,
                   message: '404',
