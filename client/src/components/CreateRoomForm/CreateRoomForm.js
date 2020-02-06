@@ -3,16 +3,17 @@ import { func, string } from 'prop-types';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import Form from '../../components/Form';
 
 import styles from './CreateRoomForm.module.scss';
 
-const CreateRoomForm = ({ onChange, onClick, inputValue }) => (
-  <div className={styles.wrapper}>
-    <Input value={inputValue} onChange={onChange} placeholder="Type the room name" />
-    <Button onClick={onClick} className={styles.btn}>
+const CreateRoomForm = ({ onSubmit, ...props }) => (
+  <Form onSubmit={onSubmit} className={styles.wrapper}>
+    <Input placeholder="Type the room name" {...props} />
+    <Button onClick={onSubmit} className={styles.btn}>
       Add room
     </Button>
-  </div>
+  </Form>
 );
 
 CreateRoomForm.propTypes = {

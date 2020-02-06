@@ -1,0 +1,15 @@
+.item {
+  display: inline-block;
+  background: #c3e88d;
+  padding: 5px 45px;
+  border-radius: 4px;
+  border: none;
+
+  .author,
+  .value {
+    display: block;
+  }
+}
+
+.myMessage {
+}

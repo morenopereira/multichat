@@ -18,10 +18,10 @@ const Home = ({ history }) => {
   const handleInputChange = e => setNickName(e.target.value);
 
   const handleSubmit = () => {
-    if (!nickName.trim()) {
-      setInputStatus({ error: true, message: 'Please enter your nickname' });
-    } else {
+    if (nickName.trim()) {
       history.push(rooms);
+    } else {
+      setInputStatus({ error: true, message: 'Please enter your nickname' });
     }
   };
 

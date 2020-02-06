@@ -22,7 +22,7 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-  onChange: func.isRequired,
+  onChange: func,
   name: string,
   value: string,
   placeholder: string,

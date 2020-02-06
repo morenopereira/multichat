@@ -6,9 +6,10 @@ import { routes } from './constants';
 
 import Home from './pages/Home';
 import Rooms from './pages/Rooms';
+import Room from './pages/Room';
 
 const Routes = ({ history }) => {
-  const { home, rooms } = routes;
+  const { home, rooms, room, roomId } = routes;
 
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ const Routes = ({ history }) => {
         <Switch>
           <Route path={home} component={Home} exact />
           <Route path={rooms} component={Rooms} exact />
+          <Route path={[room, roomId]} component={Room} exact />
 
           <Route path="*">
             <Redirect
