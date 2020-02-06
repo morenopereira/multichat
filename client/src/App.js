@@ -1,5 +1,10 @@
 import React from 'react';
+import { createBrowserHistory } from 'history';
 
-const App = () => <h1>app</h1>;
+import Routes from './Routes';
+
+const customHistory = createBrowserHistory();
+
+const App = () => <Routes history={customHistory} />;
 
 export default App;
