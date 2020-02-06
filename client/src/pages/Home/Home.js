@@ -7,19 +7,27 @@ import Container from '../../components/Container';
 import UserNameForm from '../../components/UserNameForm';
 
 const Home = ({ history }) => {
-  const [userName, setUserName] = useState('');
+  const [nickName, setNickName] = useState('');
+  const [inputStatus, setInputStatus] = useState({
+    error: false,
+    message: '',
+  });
 
   const { rooms } = routes;
 
-  const handleInputChange = e => setUserName(e.target.value);
+  const handleInputChange = e => setNickName(e.target.value);
 
   const handleSubmit = () => {
-    if (userName.trim()) history.push(rooms);
+    if (!nickName.trim()) {
+      setInputStatus({ error: true, message: 'Please enter your nickname' });
+    } else {
+      history.push(rooms);
+    }
   };
 
   return (
     <Container flex align="center">
-      <UserNameForm onClick={handleSubmit} onChange={handleInputChange} inputValue={userName} />
+      <UserNameForm error={inputStatus} onClick={handleSubmit} onChange={handleInputChange} value={nickName} />
     </Container>
   );
 };

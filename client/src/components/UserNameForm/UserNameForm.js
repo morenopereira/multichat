@@ -1,15 +1,15 @@
 import React from 'react';
-import { func, string } from 'prop-types';
+import { func } from 'prop-types';
 
 import Input from '../Input';
 import Button from '../Button';
 
 import styles from './UserNameForm.module.scss';
 
-const NickNameForm = ({ onChange, inputValue, onClick }) => (
+const NickNameForm = ({ onClick, ...props }) => (
   <div className={styles.wrapper}>
     <h1 className={styles.subTitle}>Chat IO</h1>
-    <Input className={styles.input} onChange={onChange} placeholder="Please enter a user name" value={inputValue} />
+    <Input placeholder="Please enter a nick name" {...props} />
     <Button onClick={onClick} className={styles.btn}>
       Login
     </Button>
@@ -17,8 +17,6 @@ const NickNameForm = ({ onChange, inputValue, onClick }) => (
 );
 
 NickNameForm.propTypes = {
-  onChange: func,
-  inputValue: string,
   onClick: func,
 };
 

@@ -1,16 +1,19 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, object } from 'prop-types';
 
 import styles from './Input.module.scss';
 
-const Input = ({ name, onChange, value, placeholder, className }) => (
-  <input
-    className={`${styles.wrapper} ${className}`}
-    name={name}
-    onChange={onChange}
-    value={value}
-    placeholder={placeholder}
-  />
+const Input = ({ name, onChange, value, placeholder, className, error }) => (
+  <>
+    {error && error.error && <div className={styles.error}>{error.message}</div>}
+    <input
+      className={`${styles.wrapper} ${className}`}
+      name={name}
+      onChange={onChange}
+      value={value}
+      placeholder={placeholder}
+    />
+  </>
 );
 
 Input.defaultProps = {
@@ -24,6 +27,7 @@ Input.propTypes = {
   value: string,
   placeholder: string,
   className: string,
+  error: object,
 };
 
 export default Input;
