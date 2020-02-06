@@ -5,9 +5,6 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   @media (min-width: 768px) {
     width: 750px;
@@ -20,4 +17,17 @@
   @media (min-width: 1200px) {
     width: 1170px;
   }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
 }

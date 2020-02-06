@@ -1,19 +1,28 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { Link } from 'react-router-dom';
+import { string, func, object } from 'prop-types';
 
 import styles from './Button.module.scss';
 
-const Button = ({ children, className, color = 'primary', onClick }) => (
-  <button onClick={onClick} className={`${className} ${color && styles[color]}`}>
-    {children}
-  </button>
-);
+const Button = ({ children, className, color = 'primary', onClick, type, link }) => {
+  return type === 'link' ? (
+    <Link className={`${styles.link} ${color && styles[color]}`} to={link.href}>
+      {link.label}
+    </Link>
+  ) : (
+    <button onClick={onClick} className={`${className} ${color && styles[color]}`}>
+      {children}
+    </button>
+  );
+};
 
 Button.propTypes = {
   children: string,
   className: string,
   color: string,
   onClick: func,
+  type: string,
+  link: object,
 };
 
 export default Button;

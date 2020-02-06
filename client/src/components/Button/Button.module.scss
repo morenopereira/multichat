@@ -1,11 +1,30 @@
 @import '../../styles/variables';
 
-.primary {
-  background: $primary-color;
+.primary,
+.link {
   border-radius: 4px;
   padding: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.primary {
+  background: $secondary-color;
   color: $white;
   font-weight: bold;
-  outline: none;
   border: none;
+
+  &:hover {
+    background: $primary-color;
+    transition: all 0.3s;
+  }
+}
+
+.darkGray {
+  border: 1px solid $gray;
+  color: $dark-gray;
+}
+
+.link {
+  text-decoration: none;
 }

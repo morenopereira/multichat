@@ -1,8 +1,14 @@
+@import '../../styles/variables';
+
 .wrapper {
   min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .subTitle {
+    color: $primary-color;
+  }
 
   .input {
     margin-top: 80px;
@@ -10,5 +16,6 @@
 
   .btn {
     margin-top: 20px;
+    width: 100%;
   }
 }
