@@ -4,3 +4,5 @@ export const routes = {
   room: '/room',
   roomId: '/room/:id',
 };
+
+export const socketUri = 'http://localhost:8080';

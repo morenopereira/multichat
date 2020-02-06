@@ -7,8 +7,8 @@ import styles from './MessageList.module.scss';
 
 const MessageList = ({ messages }) => (
   <ul className={styles.wrapper}>
-    {messages.map(message => (
-      <Message key={message.value} message={message} />
+    {messages.map((message, index) => (
+      <Message key={index} message={message} />
     ))}
   </ul>
 );
