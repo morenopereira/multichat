@@ -10,10 +10,10 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
+    trim: true,
   },
   birthday: {
     type: String,
-    require: true,
   },
   restriction: {
     type: Boolean,

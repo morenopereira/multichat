@@ -15,6 +15,7 @@ const Home = ({ history, createUser }) => {
     nickName: '',
     restriction: true,
   });
+
   const [inputStatus, setInputStatus] = useState({
     error: false,
     message: '',
@@ -22,7 +23,7 @@ const Home = ({ history, createUser }) => {
 
   const { rooms } = routes;
 
-  const handleInputChange = e => setUser({ nickName: e.target.value, restriction: true });
+  const handleInputChange = e => setUser({ ...userState, nickName: e.target.value, restriction: true });
 
   const handleSubmit = () => {
     if (userState.nickName.trim()) {

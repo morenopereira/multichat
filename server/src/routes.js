@@ -8,6 +8,7 @@ routes.post('/users', userController.create);
 routes.get('/users', userController.retrieveAll);
 routes.get('/users/:id', userController.retrieveById);
 routes.put('/users/:id', userController.update);
+routes.delete('/users/:id', userController.deleteById);
 
 // Rooms
 routes.post('/rooms', roomController.create);

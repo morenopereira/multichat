@@ -1,3 +1,6 @@
+import api from '../services/api';
+import { apiRoutes } from '../constants';
+
 const CREATE_USER = 'CREATE_USER';
 const CREATE_USER_ERROR = 'CREATE_USER_ERROR';
 
@@ -13,7 +16,13 @@ const INITIAL_STATE = {
 
 export const createUser = user => async (dispatch, getState) => {
   try {
-    dispatch({ type: CREATE_USER, payload: user });
+    const { users } = apiRoutes;
+
+    const { data } = await api.post(users, {
+      user,
+    });
+
+    dispatch({ type: CREATE_USER, payload: data });
   } catch (error) {
     dispatch({ type: CREATE_USER_ERROR, error });
   }

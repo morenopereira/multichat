@@ -40,9 +40,20 @@ const update = async (req, res) => {
   }
 };
 
+const deleteById = async (req, res) => {
+  try {
+    const users = await User.findByIdAndDelete(req.params.id);
+
+    return res.status(200).send(users);
+  } catch (error) {
+    return res.status(400).send({ error, message: 'No users found.' });
+  }
+};
+
 module.exports = {
   create,
   retrieveAll,
   update,
   retrieveById,
+  deleteById,
 };
