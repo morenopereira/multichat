@@ -3,7 +3,7 @@ const Message = require('../models/Message');
 
 const create = async (req, res) => {
   try {
-    const { name, messages } = req.body;
+    const { name } = req.body.room;
 
     const room = await Room.create({ name });
 

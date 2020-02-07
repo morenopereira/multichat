@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { object } from 'prop-types';
 import io from 'socket.io-client';
 
-import { createUser } from '../../redux/userReducers';
+import { updateUser } from '../../redux/userReducers';
 
 import { socketUri, routes } from '../../constants';
 
@@ -16,9 +16,10 @@ import CreateUserForm from '../../components/CreateUserForm';
 const socket = io(socketUri);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
-const Room = ({ user, createUser, history }) => {
+const Room = ({ user, updateUser, history }) => {
   const [userState, setUserState] = useState({
     nickName: user.nickName,
+    id: user.id,
     email: '',
     name: '',
     birthday: '',
@@ -37,30 +38,24 @@ const Room = ({ user, createUser, history }) => {
     return () => socket.off('chat.message');
   }, [messages]);
 
-  useEffect(() => {
-    if (!user.nickName) {
-      history.push(routes.home);
-    }
-  });
-
   const handleInputChange = e => setMessage({ value: e.target.value, author: user.nickName });
 
   const handleUserChange = e => setUserState({ ...userState, [e.target.name]: e.target.value });
 
-  const handleSubmit = e => {
+  const sendMessage = e => {
     e.preventDefault();
 
     socket.emit('chat.message', message);
     setMessage({ value: '' });
   };
 
-  const updateUser = () => {
+  const updateUserSubmit = () => {
     const { nickName, email, name, birthday } = userState;
 
     if (nickName.trim() && email.trim() && name.trim() && birthday.trim()) {
       userState.restriction = false;
 
-      createUser(userState);
+      updateUser(userState);
     }
   };
 
@@ -72,11 +67,11 @@ const Room = ({ user, createUser, history }) => {
           completeSigin
           title="Complete your registration to send messages"
           btnLabel="Enter"
-          onClick={updateUser}
+          onClick={updateUserSubmit}
           onChange={handleUserChange}
         />
       ) : (
-        <RoomForm value={message.value} onSubmit={handleSubmit} onChange={handleInputChange} />
+        <RoomForm value={message.value} onSubmit={sendMessage} onChange={handleInputChange} />
       )}
     </Container>
   );
@@ -92,7 +87,7 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    createUser: bindActionCreators(createUser, dispatch),
+    updateUser: bindActionCreators(updateUser, dispatch),
   };
 };
 

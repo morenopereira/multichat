@@ -10,7 +10,7 @@ const RoomsList = ({ rooms, title }) => (
     <h1>{title}</h1>
     <ul className={styles.list}>
       {rooms.map(room => (
-        <RoomItem key={room} item={room} />
+        <RoomItem key={room._id} item={room.name} />
       ))}
     </ul>
   </div>

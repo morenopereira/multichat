@@ -3,9 +3,11 @@ import { combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { user } from '../redux/userReducers';
+import { room } from '../redux/roomReducer';
 
 export const reducers = combineReducers({
   user,
+  room,
 });
 
 const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });

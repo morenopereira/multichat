@@ -19,7 +19,7 @@ const Routes = ({ history }) => {
           <Route path={rooms} component={Rooms} exact />
           <Route path={[room, roomId]} component={Room} exact />
 
-          <Route path="*">
+          {/* <Route path="*">
             <Redirect
               to={{
                 pathname: '/ops',
@@ -29,7 +29,7 @@ const Routes = ({ history }) => {
                 },
               }}
             />
-          </Route>
+          </Route> */}
         </Switch>
       </Router>
     </BrowserRouter>

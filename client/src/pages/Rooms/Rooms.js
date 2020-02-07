@@ -1,32 +1,60 @@
-import React, { useState } from 'react';
-import { object } from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { func, array } from 'prop-types';
+
+import { createRoom, getAllRooms } from '../../redux/roomReducer';
+
+import { routes } from '../../constants';
 
 import Container from '../../components/Container';
 import RoomsList from '../../components/RoomsList';
 import CreateRoomForm from '../../components/CreateRoomForm';
 
-const roomsMock = ['amigos', 'familia', 'futebol'];
+const Rooms = ({ createRoom, allrooms, getAllRooms, history }) => {
+  const [room, setRoom] = useState({
+    name: '',
+    message: [],
+  });
 
-const Rooms = () => {
-  const [room, setRoom] = useState('');
-  const [rooms, setRooms] = useState(roomsMock);
+  useEffect(() => {
+    getAllRooms();
+  }, []);
 
-  const handleInputChange = e => setRoom(e.target.value);
+  const handleInputChange = e => setRoom({ ...room, name: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    setRooms([...rooms, room]);
-    setRoom('');
+    await createRoom(room);
+    getAllRooms();
+    setRoom({ name: '' });
+    history.push(`${routes.room}/${room.name}`);
   };
 
   return (
     <Container flex direction="column" align="center">
-      <CreateRoomForm value={room} onChange={handleInputChange} onSubmit={handleSubmit} />
-      <RoomsList title="Recent rooms" rooms={rooms} />
+      <h1>Rooms</h1>
+      <CreateRoomForm value={room.name} onChange={handleInputChange} onSubmit={handleSubmit} />
+      {allrooms.length > 0 && <RoomsList title="Recent rooms" rooms={allrooms} />}
     </Container>
   );
 };
 
-Rooms.propTypes = {};
+Rooms.propTypes = {
+  createRoom: func,
+  allrooms: array,
+  getAllRooms: func,
+};
 
-export default Rooms;
+const mapStateToProps = ({ room }) => ({
+  allrooms: room.rooms,
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createRoom: bindActionCreators(createRoom, dispatch),
+    getAllRooms: bindActionCreators(getAllRooms, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rooms);

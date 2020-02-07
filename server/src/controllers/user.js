@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 const create = async (req, res) => {
   try {
-    const user = await User.create(req.body);
+    const user = await User.create(req.body.user);
 
     res.status(200).send({ message: 'Created', user });
   } catch (error) {
@@ -31,8 +31,13 @@ const retrieveById = async (req, res) => {
 };
 
 const update = async (req, res) => {
+  const { nickName, name, email, birthday, restriction } = req.body.user;
   try {
-    const user = await User.update(req.params.id, req.body);
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { nickName, name, email, birthday, restriction },
+      { new: true }
+    );
 
     return res.status(200).send({ message: 'Updated', user });
   } catch (error) {
