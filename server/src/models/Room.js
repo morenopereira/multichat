@@ -3,10 +3,13 @@ const mongoose = require('../db');
 const RoomSchema = new mongoose.Schema({
   name: {
     type: String,
+    require: true,
+    unique: true,
   },
   messages: [
     {
       type: mongoose.Schema.Types.ObjectId,
+      require: true,
       ref: 'Message',
     },
   ],

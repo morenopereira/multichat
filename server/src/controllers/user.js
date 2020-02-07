@@ -16,7 +16,7 @@ const retrieveAll = async (req, res) => {
 
     return res.status(200).send(users);
   } catch (error) {
-    return res.status(400).send({ error, message: 'No user found.' });
+    return res.status(400).send({ error, message: 'No users found.' });
   }
 };
 
@@ -36,7 +36,7 @@ const update = async (req, res) => {
 
     return res.status(200).send({ message: 'Updated', user });
   } catch (error) {
-    return res.status(400).send('Update canceled');
+    return res.status(400).send('Update cancelled');
   }
 };
 
