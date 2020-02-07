@@ -10,7 +10,7 @@ import styles from './RoomForm.module.scss';
 const RoomForm = ({ onSubmit, ...props }) => {
   return (
     <Form onSubmit={onSubmit} className={styles.wrapper}>
-      <Input className={styles.input} placeholder="Type the room name" {...props} />
+      <Input name="message" className={styles.input} placeholder="Type a message" {...props} />
       <Button onClick={onSubmit} className={styles.btn}>
         Click
       </Button>

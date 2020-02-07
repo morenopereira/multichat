@@ -1,21 +1,27 @@
 @import '../../styles/variables';
 
 .wrapper {
-  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   .subTitle {
     color: $primary-color;
+    font-size: 30px;
   }
 
   .input {
-    margin-top: 80px;
+    margin: 5px;
   }
 
   .btn {
     margin-top: 20px;
     width: 100%;
+    max-width: 300px;
   }
 }

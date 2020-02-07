@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
-import { object } from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { object, func } from 'prop-types';
+
+import { createUser } from '../../redux/userReducers';
 
 import { routes } from '../../constants';
 
 import Container from '../../components/Container';
-import UserNameForm from '../../components/UserNameForm';
+import CreateUserForm from '../../components/CreateUserForm';
 
-const Home = ({ history }) => {
-  const [nickName, setNickName] = useState('');
+const Home = ({ history, createUser }) => {
+  const [userState, setUser] = useState({
+    nickName: '',
+    restriction: true,
+  });
   const [inputStatus, setInputStatus] = useState({
     error: false,
     message: '',
@@ -15,10 +22,11 @@ const Home = ({ history }) => {
 
   const { rooms } = routes;
 
-  const handleInputChange = e => setNickName(e.target.value);
+  const handleInputChange = e => setUser({ nickName: e.target.value, restriction: true });
 
   const handleSubmit = () => {
-    if (nickName.trim()) {
+    if (userState.nickName.trim()) {
+      createUser(userState);
       history.push(rooms);
     } else {
       setInputStatus({ error: true, message: 'Please enter your nickname' });
@@ -27,13 +35,26 @@ const Home = ({ history }) => {
 
   return (
     <Container flex align="center">
-      <UserNameForm error={inputStatus} onClick={handleSubmit} onChange={handleInputChange} value={nickName} />
+      <CreateUserForm
+        error={inputStatus}
+        onClick={handleSubmit}
+        onChange={handleInputChange}
+        value={userState.nickName}
+      />
     </Container>
   );
 };
 
 Home.propTypes = {
   history: object,
+  user: object,
+  createUser: func,
 };
 
-export default Home;
+const mapDispatchToProps = dispatch => {
+  return {
+    createUser: bindActionCreators(createUser, dispatch),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Home);
