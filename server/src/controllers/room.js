@@ -7,17 +7,17 @@ const create = async (req, res) => {
 
     const room = await Room.create({ name });
 
-    await Promise.all(
-      messages.map(async message => {
-        const roomMessage = new Message({ ...message, room: message._id });
+    // await Promise.all(
+    //   messages.map(async message => {
+    //     const roomMessage = new Message({ ...message, room: message._id });
 
-        await roomMessage.save();
+    //     await roomMessage.save();
 
-        room.messages.push(roomMessage);
-      })
-    );
+    //     room.messages.push(roomMessage);
+    //   })
+    // );
 
-    await room.save();
+    // await room.save();
 
     res.status(200).send({ message: 'Created', room });
   } catch (error) {

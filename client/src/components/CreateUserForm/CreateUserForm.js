@@ -10,7 +10,7 @@ const CreateUserForm = ({ onClick, completeSigin, title = 'Chat IO', btnLabel = 
   <div className={styles.wrapper}>
     <h3 className={styles.subTitle}>{title}</h3>
     {completeSigin ? (
-      <div>
+      <div className={styles.inputContainer}>
         <Input name="email" className={styles.input} placeholder="Type your email" {...props} />
         <Input name="name" className={styles.input} placeholder="Type your name" {...props} />
         <Input name="birthday" className={styles.input} placeholder="Type your birthday" {...props} />

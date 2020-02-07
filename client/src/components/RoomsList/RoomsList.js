@@ -7,7 +7,7 @@ import styles from './RoomsList.module.scss';
 
 const RoomsList = ({ rooms, title }) => (
   <div className={styles.wrapper}>
-    <h1>{title}</h1>
+    <h2>{title}</h2>
     <ul className={styles.list}>
       {rooms.map(room => (
         <RoomItem key={room._id} item={room.name} />

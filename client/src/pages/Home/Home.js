@@ -43,7 +43,7 @@ const Home = ({ history, createUser, getUser, user }) => {
   };
 
   return (
-    <Container flex align="center">
+    <Container flex align="center" direction="column">
       <CreateUserForm
         error={inputStatus}
         onClick={handleSubmit}

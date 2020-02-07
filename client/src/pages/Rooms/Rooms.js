@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { func, array } from 'prop-types';
 
+import { getUser, user } from '../../redux/userReducers';
 import { createRoom, getAllRooms } from '../../redux/roomReducer';
 
 import { routes } from '../../constants';
@@ -11,7 +12,7 @@ import Container from '../../components/Container';
 import RoomsList from '../../components/RoomsList';
 import CreateRoomForm from '../../components/CreateRoomForm';
 
-const Rooms = ({ createRoom, allrooms, getAllRooms, history }) => {
+const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history, user }) => {
   const [room, setRoom] = useState({
     name: '',
     message: [],
@@ -19,14 +20,16 @@ const Rooms = ({ createRoom, allrooms, getAllRooms, history }) => {
 
   useEffect(() => {
     getAllRooms();
+    getUser();
+
+    if (!user.nickName) history.push(routes.home);
   }, []);
 
   const handleInputChange = e => setRoom({ ...room, name: e.target.value });
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    await createRoom(room);
-    getAllRooms();
+    createRoom(room);
     setRoom({ name: '' });
     history.push(`${routes.room}/${room.name}`);
   };
@@ -46,14 +49,16 @@ Rooms.propTypes = {
   getAllRooms: func,
 };
 
-const mapStateToProps = ({ room }) => ({
+const mapStateToProps = ({ room, user }) => ({
   allrooms: room.rooms,
+  user: user.data,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     createRoom: bindActionCreators(createRoom, dispatch),
     getAllRooms: bindActionCreators(getAllRooms, dispatch),
+    getUser: bindActionCreators(getUser, dispatch),
   };
 };
 

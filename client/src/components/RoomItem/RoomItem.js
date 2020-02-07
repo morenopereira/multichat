@@ -10,7 +10,7 @@ const { room } = routes;
 
 const RoomItem = ({ item }) => (
   <li className={styles.item}>
-    <Button color="darkGray" type="link" link={{ label: item, href: `${room}/${item}` }}>
+    <Button classNam={styles.a} color="darkGray" type="link" link={{ label: item, href: `${room}/${item}` }}>
       {item}
     </Button>
   </li>
