@@ -3,24 +3,13 @@ const Message = require('../models/Message');
 
 const create = async (req, res) => {
   try {
-    const { name } = req.body.room;
+    const { name } = req.body;
 
     const room = await Room.create({ name });
 
-    // await Promise.all(
-    //   messages.map(async message => {
-    //     const roomMessage = new Message({ ...message, room: message._id });
-
-    //     await roomMessage.save();
-
-    //     room.messages.push(roomMessage);
-    //   })
-    // );
-
-    // await room.save();
-
     res.status(200).send({ message: 'Created', room });
   } catch (error) {
+    console.log(error);
     return res.status(404).send({ error, message: 'Error' });
   }
 };
@@ -45,8 +34,33 @@ const retrieveById = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const { name, messages } = req.body;
+
+    const room = await Room.findByIdAndUpdate(req.params.id, { name }, { new: true }).populate('messages');
+
+    await Promise.all(
+      messages.map(async message => {
+        const roomMessage = new Message({ ...message, room: message._id });
+
+        await roomMessage.save();
+
+        room.messages.push(roomMessage);
+      })
+    );
+
+    await room.save();
+
+    res.status(200).send({ message: 'Updated', room });
+  } catch (error) {
+    return res.status(404).send({ error, message: 'Error' });
+  }
+};
+
 module.exports = {
   create,
   retrieveAll,
   retrieveById,
+  update,
 };

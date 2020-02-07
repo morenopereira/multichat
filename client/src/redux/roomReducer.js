@@ -24,7 +24,7 @@ export const createRoom = room => async (dispatch, getState) => {
     const { rooms } = apiRoutes;
 
     const { data } = await api.post(rooms, {
-      room,
+      body: room,
     });
 
     dispatch({ type: CREATE_ROOM, payload: data.room });
