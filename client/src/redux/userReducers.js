@@ -69,12 +69,7 @@ export function user(state = INITIAL_STATE, action = {}) {
     case CREATE_USER:
       return {
         ...state,
-        data: {
-          ...state.data,
-          id: action.payload._id,
-          nickName: action.payload.nickName,
-          restriction: action.payload.restriction,
-        },
+        data: action.payload,
       };
     case CREATE_USER_ERROR:
       return {
@@ -85,15 +80,7 @@ export function user(state = INITIAL_STATE, action = {}) {
     case UPDATE_USER:
       return {
         ...state,
-        data: {
-          ...state.data,
-          id: action.payload._id,
-          nickName: action.payload.nickName,
-          restriction: action.payload.restriction,
-          email: action.payload.email,
-          name: action.payload.name,
-          birthday: action.payload.birthday,
-        },
+        data: action.payload,
       };
     case UPDATE_USER_ERROR:
       return {
@@ -104,15 +91,7 @@ export function user(state = INITIAL_STATE, action = {}) {
     case GET_USER:
       return {
         ...state,
-        data: {
-          ...state.data,
-          id: action.payload._id,
-          nickName: action.payload.nickName,
-          restriction: action.payload.restriction,
-          email: action.payload.email,
-          birthday: action.payload.birthday,
-          name: action.payload.name,
-        },
+        data: action.payload,
       };
     case GET_USER_ERROR:
       return {

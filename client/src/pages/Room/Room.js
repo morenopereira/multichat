@@ -24,6 +24,7 @@ const Room = ({ user, updateUser, getUser }) => {
     name: '',
     birthday: '',
   });
+  console.log(user);
 
   const [messages, setMessages] = useState([]);
 

@@ -63,12 +63,7 @@ export function room(state = INITIAL_STATE, action = {}) {
     case CREATE_ROOM:
       return {
         ...state,
-        data: {
-          ...state.data,
-          id: action.payload._id,
-          name: action.payload.name,
-          createdBy: action.payload.createdBy,
-        },
+        data: action.payload,
       };
     case CREATE_ROOM_ERROR:
       return {
