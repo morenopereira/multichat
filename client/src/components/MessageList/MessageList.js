@@ -5,10 +5,10 @@ import Message from '../Message';
 
 import styles from './MessageList.module.scss';
 
-const MessageList = ({ messages }) => (
+const MessageList = ({ messages, user }) => (
   <ul className={styles.wrapper}>
     {messages.map((message, index) => (
-      <Message key={index} message={message} />
+      <Message user={user} key={index} message={message} />
     ))}
   </ul>
 );

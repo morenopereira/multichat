@@ -28,7 +28,7 @@ export const createUser = user => async (dispatch, getState) => {
       user,
     });
 
-    localStorage.setItem('@chatio_id', data.user._id);
+    sessionStorage.setItem('@chatio_id', data.user._id);
 
     dispatch({ type: CREATE_USER, payload: data.user });
   } catch (error) {
@@ -40,7 +40,7 @@ export const getUser = () => async (dispatch, getState) => {
   try {
     const { users } = apiRoutes;
 
-    const id = localStorage.getItem('@chatio_id');
+    const id = sessionStorage.getItem('@chatio_id');
 
     const { data } = await api(`${users}/${id}`);
 

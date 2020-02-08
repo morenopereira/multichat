@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { object } from 'prop-types';
 import io from 'socket.io-client';
 
-import { updateUser } from '../../redux/userReducers';
+import { updateUser, getUser } from '../../redux/userReducers';
 
 import { socketUri, routes } from '../../constants';
 
@@ -16,7 +16,7 @@ import CreateUserForm from '../../components/CreateUserForm';
 const socket = io(socketUri);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
-const Room = ({ user, updateUser, history }) => {
+const Room = ({ user, updateUser, history, getUser }) => {
   const [userState, setUserState] = useState({
     nickName: user.nickName,
     id: user.id,
@@ -33,6 +33,10 @@ const Room = ({ user, updateUser, history }) => {
   });
 
   useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
     const handleNewMessage = newMessage => setMessages([...messages, newMessage]);
     socket.on('chat.message', handleNewMessage);
     return () => socket.off('chat.message');
@@ -44,7 +48,7 @@ const Room = ({ user, updateUser, history }) => {
 
   const sendMessage = e => {
     e.preventDefault();
-
+    console.log(message);
     socket.emit('chat.message', message);
     setMessage({ value: '' });
   };
@@ -61,7 +65,7 @@ const Room = ({ user, updateUser, history }) => {
 
   return (
     <Container flex direction="column" justify="between">
-      <MessageList messages={messages} />
+      <MessageList user={user} messages={messages} />
       {user.restriction ? (
         <CreateUserForm
           completeSigin
@@ -88,6 +92,7 @@ const mapStateToProps = ({ user }) => ({
 const mapDispatchToProps = dispatch => {
   return {
     updateUser: bindActionCreators(updateUser, dispatch),
+    getUser: bindActionCreators(getUser, dispatch),
   };
 };
 

@@ -5,8 +5,8 @@ const CREATE_ROOM = 'CREATE_ROOM';
 const CREATE_ROOM_ERROR = 'CREATE_USER_ERROR';
 const GET_ROOMS = 'GET_ROOMS';
 const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
-// const UPDATE_USER = 'UPDATE_USER';
-// const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
+const GET_ROOM = 'GET_ROOM';
+const GET_ROOM_ERROR = 'GET_ROOM_ERROR';
 
 const INITIAL_STATE = {
   data: {
@@ -17,6 +17,7 @@ const INITIAL_STATE = {
   },
   serverError: false,
   rooms: [],
+  room: {},
 };
 
 export const createRoom = room => async (dispatch, getState) => {
@@ -24,7 +25,7 @@ export const createRoom = room => async (dispatch, getState) => {
     const { rooms } = apiRoutes;
 
     const { data } = await api.post(rooms, {
-      body: room,
+      room,
     });
 
     dispatch({ type: CREATE_ROOM, payload: data.room });
@@ -45,19 +46,17 @@ export const getAllRooms = () => async (dispatch, getState) => {
   }
 };
 
-// export const updateUser = user => async (dispatch, getState) => {
-//   try {
-//     const { users } = apiRoutes;
+export const getRoomsById = id => async (dispatch, getState) => {
+  try {
+    const { rooms } = apiRoutes;
 
-//     const { data } = await api.put(`${users}/${user.id}`, {
-//       user,
-//     });
+    const { data } = await api(`${rooms}/${id}`);
 
-//     dispatch({ type: UPDATE_USER, payload: data.user });
-//   } catch (error) {
-//     dispatch({ type: UPDATE_USER_ERROR, error });
-//   }
-// };
+    dispatch({ type: GET_ROOM, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_ROOM_ERROR, error });
+  }
+};
 
 export function room(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
@@ -75,6 +74,23 @@ export function room(state = INITIAL_STATE, action = {}) {
       return {
         ...state,
         rooms: action.payload,
+      };
+    case GET_ROOMS_ERROR:
+      return {
+        ...state,
+        rooms: [],
+        serverError: true,
+      };
+    case GET_ROOM:
+      return {
+        ...state,
+        room: action.payload,
+      };
+    case GET_ROOM_ERROR:
+      return {
+        ...state,
+        room: {},
+        serverError: true,
       };
     default:
       return state;

@@ -3,13 +3,10 @@ const Message = require('../models/Message');
 
 const create = async (req, res) => {
   try {
-    const { name } = req.body;
-
-    const room = await Room.create({ name });
+    const room = await Room.create(req.body.room);
 
     res.status(200).send({ message: 'Created', room });
   } catch (error) {
-    console.log(error);
     return res.status(404).send({ error, message: 'Error' });
   }
 };

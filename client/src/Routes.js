@@ -18,18 +18,6 @@ const Routes = ({ history }) => {
           <Route path={home} component={Home} exact />
           <Route path={rooms} component={Rooms} exact />
           <Route path={[room, roomId]} component={Room} exact />
-
-          {/* <Route path="*">
-            <Redirect
-              to={{
-                pathname: '/ops',
-                state: {
-                  referrer: window && window.location.href,
-                  message: '404',
-                },
-              }}
-            />
-          </Route> */}
         </Switch>
       </Router>
     </BrowserRouter>

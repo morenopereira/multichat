@@ -21,8 +21,6 @@ const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history, user }) =>
   useEffect(() => {
     getAllRooms();
     getUser();
-
-    if (!user.nickName) history.push(routes.home);
   }, []);
 
   const handleInputChange = e => setRoom({ ...room, name: e.target.value });

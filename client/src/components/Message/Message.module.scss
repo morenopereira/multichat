@@ -1,9 +1,14 @@
+@import '../../styles/variables';
+
 .item {
-  display: inline-block;
-  background: #c3e88d;
-  padding: 5px 45px;
-  border-radius: 4px;
-  border: none;
+  .messageContainer {
+    padding: 5px 20px;
+    border-radius: 4px;
+    background: $message-color;
+    max-width: 170px;
+    float: left;
+    text-align: left;
+  }
 
   .author,
   .value {
@@ -12,4 +17,7 @@
 }
 
 .myMessage {
+  float: right !important;
+  text-align: right !important;
+  background: $my-message-color !important;
 }
