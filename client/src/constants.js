@@ -1,3 +1,5 @@
+export const apiURI = 'http://localhost:8080';
+
 export const routes = {
   home: '/',
   rooms: '/rooms',

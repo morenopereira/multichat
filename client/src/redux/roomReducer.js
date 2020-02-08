@@ -70,6 +70,12 @@ export function room(state = INITIAL_STATE, action = {}) {
           createdBy: action.payload.createdBy,
         },
       };
+    case CREATE_ROOM_ERROR:
+      return {
+        ...state,
+        data: {},
+        serverError: true,
+      };
     case GET_ROOMS:
       return {
         ...state,

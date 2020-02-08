@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { func, array } from 'prop-types';
 
-import { getUser, user } from '../../redux/userReducers';
+import { getUser } from '../../redux/userReducers';
 import { createRoom, getAllRooms } from '../../redux/roomReducer';
 
 import { routes } from '../../constants';
@@ -12,7 +12,7 @@ import Container from '../../components/Container';
 import RoomsList from '../../components/RoomsList';
 import CreateRoomForm from '../../components/CreateRoomForm';
 
-const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history, user }) => {
+const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history }) => {
   const [room, setRoom] = useState({
     name: '',
     message: [],
@@ -21,7 +21,7 @@ const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history, user }) =>
   useEffect(() => {
     getAllRooms();
     getUser();
-  }, []);
+  }, [getAllRooms, getUser]);
 
   const handleInputChange = e => setRoom({ ...room, name: e.target.value });
 
@@ -47,9 +47,8 @@ Rooms.propTypes = {
   getAllRooms: func,
 };
 
-const mapStateToProps = ({ room, user }) => ({
+const mapStateToProps = ({ room }) => ({
   allrooms: room.rooms,
-  user: user.data,
 });
 
 const mapDispatchToProps = dispatch => {

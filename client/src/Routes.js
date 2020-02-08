@@ -1,6 +1,6 @@
 import React from 'react';
 import { object } from 'prop-types';
-import { BrowserRouter, Route, Switch, Router, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Router } from 'react-router-dom';
 
 import { routes } from './constants';
 

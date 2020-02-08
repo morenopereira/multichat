@@ -111,6 +111,12 @@ export function user(state = INITIAL_STATE, action = {}) {
           restriction: action.payload.restriction,
         },
       };
+    case GET_USER_ERROR:
+      return {
+        ...state,
+        data: {},
+        serverError: true,
+      };
     default:
       return state;
   }
