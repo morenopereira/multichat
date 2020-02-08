@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 
 import { updateUser, getUser } from '../../redux/userReducers';
 
-import { socketUri, routes } from '../../constants';
+import { socketUri } from '../../constants';
 
 import Container from '../../components/Container';
 import RoomForm from '../../components/RoomForm';
@@ -16,7 +16,7 @@ import CreateUserForm from '../../components/CreateUserForm';
 const socket = io(socketUri);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
-const Room = ({ user, updateUser, history, getUser }) => {
+const Room = ({ user, updateUser, getUser }) => {
   const [userState, setUserState] = useState({
     nickName: user.nickName,
     id: user.id,
@@ -34,7 +34,7 @@ const Room = ({ user, updateUser, history, getUser }) => {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [getUser]);
 
   useEffect(() => {
     const handleNewMessage = newMessage => setMessages([...messages, newMessage]);
@@ -48,15 +48,17 @@ const Room = ({ user, updateUser, history, getUser }) => {
 
   const sendMessage = e => {
     e.preventDefault();
-    console.log(message);
     socket.emit('chat.message', message);
     setMessage({ value: '' });
   };
 
-  const updateUserSubmit = () => {
-    const { nickName, email, name, birthday } = userState;
+  const updateUserSubmit = e => {
+    e.preventDefault();
+    const { email, name, birthday } = userState;
 
-    if (nickName.trim() && email.trim() && name.trim() && birthday.trim()) {
+    const validateInput = email.trim() && name.trim() && birthday.trim();
+
+    if (validateInput) {
       userState.restriction = false;
 
       updateUser(userState);
@@ -71,7 +73,7 @@ const Room = ({ user, updateUser, history, getUser }) => {
           completeSigin
           title="Complete your registration to send messages"
           btnLabel="Enter"
-          onClick={updateUserSubmit}
+          onSubmit={updateUserSubmit}
           onChange={handleUserChange}
         />
       ) : (

@@ -109,7 +109,16 @@ export function user(state = INITIAL_STATE, action = {}) {
           id: action.payload._id,
           nickName: action.payload.nickName,
           restriction: action.payload.restriction,
+          email: action.payload.email,
+          birthday: action.payload.birthday,
+          name: action.payload.name,
         },
+      };
+    case GET_USER_ERROR:
+      return {
+        ...state,
+        data: {},
+        serverError: true,
       };
     default:
       return state;

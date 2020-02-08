@@ -25,11 +25,11 @@ const Home = ({ history, createUser, getUser, user }) => {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [getUser]);
 
   useEffect(() => {
     if (user.nickName) history.push(rooms);
-  }, [user]);
+  }, [user, history, rooms]);
 
   const handleInputChange = e => setUser({ ...userState, nickName: e.target.value, restriction: true });
 
@@ -46,7 +46,7 @@ const Home = ({ history, createUser, getUser, user }) => {
     <Container flex align="center" direction="column">
       <CreateUserForm
         error={inputStatus}
-        onClick={handleSubmit}
+        onSubmit={handleSubmit}
         onChange={handleInputChange}
         value={userState.nickName}
       />

@@ -3,11 +3,12 @@ import { func, string, bool } from 'prop-types';
 
 import Input from '../Input';
 import Button from '../Button';
+import Form from '../Form';
 
 import styles from './CreateUserForm.module.scss';
 
-const CreateUserForm = ({ onClick, completeSigin, title = 'Chat IO', btnLabel = 'Login', ...props }) => (
-  <div className={styles.wrapper}>
+const CreateUserForm = ({ onSubmit, completeSigin, title = 'Chat IO', btnLabel = 'Login', ...props }) => (
+  <Form onSubmit={onSubmit} className={styles.wrapper}>
     <h3 className={styles.subTitle}>{title}</h3>
     {completeSigin ? (
       <div className={styles.inputContainer}>
@@ -18,10 +19,10 @@ const CreateUserForm = ({ onClick, completeSigin, title = 'Chat IO', btnLabel = 
     ) : (
       <Input className={styles.input} placeholder="Type nick name" {...props} />
     )}
-    <Button onClick={onClick} className={styles.btn}>
+    <Button onClick={onSubmit} className={styles.btn}>
       {btnLabel}
     </Button>
-  </div>
+  </Form>
 );
 
 CreateUserForm.propTypes = {
