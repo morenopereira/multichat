@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { object } from 'prop-types';
 import io from 'socket.io-client';
 
-import { updateUser, getUser } from '../../redux/userReducers';
+import { updateUser, getUser } from '../../redux/user';
 
 import { apiURI } from '../../constants';
 
@@ -38,6 +38,7 @@ const Room = ({ user, updateUser, getUser }) => {
 
   useEffect(() => {
     const handleNewMessage = newMessage => setMessages([...messages, newMessage]);
+
     socket.on('chat.message', handleNewMessage);
     return () => socket.off('chat.message');
   }, [messages]);
@@ -48,6 +49,7 @@ const Room = ({ user, updateUser, getUser }) => {
 
   const sendMessage = e => {
     e.preventDefault();
+
     socket.emit('chat.message', message);
     setMessage({ value: '' });
   };

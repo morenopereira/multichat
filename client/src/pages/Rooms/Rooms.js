@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { func, array } from 'prop-types';
+import { func, array, object } from 'prop-types';
 
-import { getUser } from '../../redux/userReducers';
-import { createRoom, getAllRooms } from '../../redux/roomReducer';
+import { getUser } from '../../redux/user';
+import { createRoom, getAllRooms } from '../../redux/rooms';
 
 import { routes } from '../../constants';
 
@@ -56,6 +56,8 @@ Rooms.propTypes = {
   createRoom: func,
   allrooms: array,
   getAllRooms: func,
+  getUser: func,
+  history: object,
 };
 
 const mapStateToProps = ({ room }) => ({

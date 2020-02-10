@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import { user } from '../redux/userReducers';
-import { room } from '../redux/roomReducer';
+import { user } from '../redux/user';
+import { room } from '../redux/rooms';
 
 export const reducers = combineReducers({
   user,

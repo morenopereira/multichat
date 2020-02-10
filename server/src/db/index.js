@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
+const mongoURI = require('../../constants');
+
 mongoose
-  .connect('mongodb://localhost:27017/chatio', {
+  .connect(mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

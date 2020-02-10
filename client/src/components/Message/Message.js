@@ -14,6 +14,7 @@ const Message = ({ message, user }) => (
 
 Message.propTypes = {
   message: object,
+  user: object,
 };
 
 export default Message;

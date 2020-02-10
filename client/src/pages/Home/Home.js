@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { object, func } from 'prop-types';
 
-import { createUser } from '../../redux/userReducers';
+import { createUser } from '../../redux/user';
 
 import { routes } from '../../constants';
 
@@ -39,7 +39,7 @@ const Home = ({ history, createUser }) => {
       createUser(userState);
       history.push(rooms);
     } else {
-      setInputStatus({ error: true, message: 'Inserira um nick name' });
+      setInputStatus({ error: true, message: 'Insira um nick name' });
     }
   };
 

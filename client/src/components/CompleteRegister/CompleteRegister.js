@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, string, bool } from 'prop-types';
+import { func, string } from 'prop-types';
 
 import Input from '../Input';
 import Button from '../Button';
@@ -22,9 +22,8 @@ const CompleteRegister = ({ onSubmit, title = 'Chat IO', btnLabel = 'Login', ...
 );
 
 CompleteRegister.propTypes = {
-  onClick: func,
+  onSubmit: func,
   title: string,
-  completeSigin: bool,
   btnLabel: string,
 };
 
