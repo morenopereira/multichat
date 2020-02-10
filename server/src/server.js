@@ -24,6 +24,11 @@ const HOST = 'localhost';
 io.on('connection', socket => {
   socket.on('chat.message', data => io.emit('chat.message', data));
 
+  socket.on('user', data => {
+    console.log('mreno');
+    // socket.broadcast.emit('user', data);
+  });
+
   socket.on('disconnect', () => console.log('[Socket] disconnected'));
 });
 

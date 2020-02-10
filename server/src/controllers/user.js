@@ -31,13 +31,8 @@ const retrieveById = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const { nickName, name, email, birthday, restriction } = req.body.user;
   try {
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      { nickName, name, email, birthday, restriction },
-      { new: true }
-    );
+    const user = await User.findByIdAndUpdate(req.params.id, req.body.user, { new: true });
 
     return res.status(200).send({ message: 'Updated', user });
   } catch (error) {

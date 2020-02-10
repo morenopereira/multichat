@@ -17,7 +17,7 @@ const CreateUserForm = ({ onSubmit, completeSigin, title = 'Chat IO', btnLabel =
         <Input name="birthday" className={styles.input} placeholder="Type your birthday" {...props} />
       </div>
     ) : (
-      <Input className={styles.input} placeholder="Type nick name" {...props} />
+      <Input placeholder="Digite seu apelido" {...props} />
     )}
     <Button onClick={onSubmit} className={styles.btn}>
       {btnLabel}

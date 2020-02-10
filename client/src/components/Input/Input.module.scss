@@ -2,15 +2,16 @@
 
 .wrapper,
 .error {
-  padding: 10px 0;
+  padding: 10px;
   border-radius: 4px;
 }
 
 .wrapper {
-  border: 1px solid $gray;
   font-size: 16px;
   outline: none;
-  width: 100%;
+  width: 93%;
+  background: $input-background;
+  border: none;
 
   &:hover,
   &:focus {

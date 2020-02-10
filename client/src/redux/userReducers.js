@@ -9,24 +9,15 @@ const UPDATE_USER = 'UPDATE_USER';
 const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
 
 const INITIAL_STATE = {
-  data: {
-    id: '',
-    nickName: '',
-    restriction: true,
-    email: '',
-    name: '',
-    birthday: '',
-  },
+  data: {},
   serverError: false,
 };
 
-export const createUser = user => async (dispatch, getState) => {
+export const createUser = user => async dispatch => {
   try {
     const { users } = apiRoutes;
 
-    const { data } = await api.post(users, {
-      user,
-    });
+    const { data } = await api.post(users, { user });
 
     sessionStorage.setItem('@chatio_id', data.user._id);
 
@@ -36,7 +27,7 @@ export const createUser = user => async (dispatch, getState) => {
   }
 };
 
-export const getUser = () => async (dispatch, getState) => {
+export const getUser = () => async dispatch => {
   try {
     const { users } = apiRoutes;
 
@@ -50,13 +41,11 @@ export const getUser = () => async (dispatch, getState) => {
   }
 };
 
-export const updateUser = user => async (dispatch, getState) => {
+export const updateUser = user => async dispatch => {
   try {
     const { users } = apiRoutes;
 
-    const { data } = await api.put(`${users}/${user.id}`, {
-      user,
-    });
+    const { data } = await api.put(`${users}/${user._id}`, { user });
 
     dispatch({ type: UPDATE_USER, payload: data.user });
   } catch (error) {

@@ -9,18 +9,17 @@ const GET_ROOM = 'GET_ROOM';
 const GET_ROOM_ERROR = 'GET_ROOM_ERROR';
 
 const INITIAL_STATE = {
-  data: {
+  newRoom: {
     id: '',
     name: '',
-    creadtedBy: '',
     messages: [],
   },
   serverError: false,
   rooms: [],
-  room: {},
+  currentRoom: {},
 };
 
-export const createRoom = room => async (dispatch, getState) => {
+export const createRoom = room => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
@@ -34,7 +33,7 @@ export const createRoom = room => async (dispatch, getState) => {
   }
 };
 
-export const getAllRooms = () => async (dispatch, getState) => {
+export const getAllRooms = () => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
@@ -46,7 +45,7 @@ export const getAllRooms = () => async (dispatch, getState) => {
   }
 };
 
-export const getRoomsById = id => async (dispatch, getState) => {
+export const getRoomsById = id => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
@@ -63,12 +62,12 @@ export function room(state = INITIAL_STATE, action = {}) {
     case CREATE_ROOM:
       return {
         ...state,
-        data: action.payload,
+        newRoom: action.payload,
       };
     case CREATE_ROOM_ERROR:
       return {
         ...state,
-        data: {},
+        newRoom: {},
         serverError: true,
       };
     case GET_ROOMS:
@@ -85,12 +84,12 @@ export function room(state = INITIAL_STATE, action = {}) {
     case GET_ROOM:
       return {
         ...state,
-        room: action.payload,
+        currentRoom: action.payload,
       };
     case GET_ROOM_ERROR:
       return {
         ...state,
-        room: {},
+        currentRoom: {},
         serverError: true,
       };
     default:

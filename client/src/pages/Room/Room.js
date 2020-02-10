@@ -18,13 +18,10 @@ socket.on('connect', () => console.log('[IO] Connect => A new connection has bee
 
 const Room = ({ user, updateUser, getUser }) => {
   const [userState, setUserState] = useState({
-    nickName: user.nickName,
-    id: user.id,
     email: '',
     name: '',
     birthday: '',
   });
-  console.log(user);
 
   const [messages, setMessages] = useState([]);
 
@@ -55,6 +52,7 @@ const Room = ({ user, updateUser, getUser }) => {
 
   const updateUserSubmit = e => {
     e.preventDefault();
+
     const { email, name, birthday } = userState;
 
     const validateInput = email.trim() && name.trim() && birthday.trim();
@@ -62,8 +60,10 @@ const Room = ({ user, updateUser, getUser }) => {
     if (validateInput) {
       userState.restriction = false;
 
-      updateUser(userState);
+      updateUser({ ...user, ...userState });
     }
+
+    // getUser();
   };
 
   return (
