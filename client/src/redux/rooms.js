@@ -23,9 +23,7 @@ export const createRoom = room => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
-    const { data } = await api.post(rooms, {
-      room,
-    });
+    const { data } = await api.post(rooms, { data: room });
 
     dispatch({ type: CREATE_ROOM, payload: data.room });
   } catch (error) {
@@ -33,12 +31,12 @@ export const createRoom = room => async dispatch => {
   }
 };
 
-export const updaRoom = (messages, id) => async dispatch => {
+export const updaRoom = (messageInfos, id) => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
     const { data } = await api.put(`${rooms}/${id}`, {
-      messages,
+      data: messageInfos,
     });
 
     dispatch({ type: CREATE_ROOM, payload: data.room });

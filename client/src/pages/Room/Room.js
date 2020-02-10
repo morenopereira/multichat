@@ -62,7 +62,7 @@ const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom
 
     socket.emit('chat.message', message);
 
-    updaRoom({ name: roomName, messages: [message] }, currentRoom._id);
+    updaRoom({ name: roomName, message }, currentRoom._id);
     setMessage({ value: '' });
   };
 

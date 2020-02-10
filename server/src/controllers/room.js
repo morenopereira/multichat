@@ -3,7 +3,7 @@ const Message = require('../models/Message');
 
 const create = async (req, res) => {
   try {
-    const room = await Room.create(req.body.room);
+    const room = await Room.create(req.body.data);
 
     res.status(200).send({ message: 'Created', room });
   } catch (error) {
@@ -33,19 +33,15 @@ const retrieveByName = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { name, messages } = req.body.messages;
+    const { name, message } = req.body.data;
 
     const room = await Room.findByIdAndUpdate(req.params.id, { name }, { new: true }).populate('messages');
 
-    await Promise.all(
-      messages.map(async message => {
-        const roomMessage = new Message({ ...message, room: message._id });
+    const roomMessage = new Message({ ...message, room: message._id });
 
-        await roomMessage.save();
+    await roomMessage.save();
 
-        room.messages.push(roomMessage);
-      })
-    );
+    room.messages.push(roomMessage);
 
     await room.save();
 
