@@ -9,9 +9,9 @@ import styles from './CreateRoomForm.module.scss';
 
 const CreateRoomForm = ({ onSubmit, ...props }) => (
   <Form onSubmit={onSubmit} className={styles.wrapper}>
-    <Input placeholder="Type the room name" {...props} />
+    <Input placeholder="Nome da sala" {...props} />
     <Button onClick={onSubmit} className={styles.btn}>
-      Add room
+      Criar sala
     </Button>
   </Form>
 );

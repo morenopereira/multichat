@@ -10,8 +10,4 @@ export default {
 
 export const Default = () => <Button onClick={action('clicked')}>Hello Button</Button>;
 
-export const Link = () => (
-  <Button color="darkGray" type="link">
-    Hello Button
-  </Button>
-);
+export const Link = () => <Button type="link">Hello Button</Button>;

@@ -34,9 +34,9 @@ const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history }) => {
 
   return (
     <Container flex direction="column" align="center">
-      <h1>Rooms</h1>
+      <h1>Salas</h1>
       <CreateRoomForm value={room.name} onChange={handleInputChange} onSubmit={handleSubmit} />
-      {allrooms.length > 0 && <RoomsList title="Recent rooms" rooms={allrooms} />}
+      {allrooms.length > 0 && <RoomsList title="Salas recentes" rooms={allrooms} />}
     </Container>
   );
 };

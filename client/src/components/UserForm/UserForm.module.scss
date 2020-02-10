@@ -10,7 +10,7 @@
     width: 100%;
   }
 
-  .subTitle {
+  .title {
     font-size: 26px;
     text-align: center;
   }
@@ -24,8 +24,16 @@
     }
   }
 
+  .input {
+    margin: 0 10px;
+
+    @media (max-width: 767px) {
+      margin: 5px 0;
+    }
+  }
+
   .btn {
-    margin-top: 20px;
+    margin: 20px 0;
     width: 100%;
   }
 }

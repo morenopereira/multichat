@@ -9,7 +9,7 @@
 .wrapper {
   font-size: 16px;
   outline: none;
-  width: 93%;
+  width: calc(100% - 20px);
   background: $input-background;
   border: none;
 

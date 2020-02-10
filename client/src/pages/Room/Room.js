@@ -11,7 +11,7 @@ import { socketUri } from '../../constants';
 import Container from '../../components/Container';
 import RoomForm from '../../components/RoomForm';
 import MessageList from '../../components/MessageList';
-import CreateUserForm from '../../components/CreateUserForm';
+import UserForm from '../../components/UserForm';
 
 const socket = io(socketUri);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
@@ -62,18 +62,16 @@ const Room = ({ user, updateUser, getUser }) => {
 
       updateUser({ ...user, ...userState });
     }
-
-    // getUser();
   };
 
   return (
     <Container flex direction="column" justify="between">
       <MessageList user={user} messages={messages} />
       {user.restriction ? (
-        <CreateUserForm
+        <UserForm
           completeSigin
-          title="Complete your registration to send messages"
-          btnLabel="Enter"
+          title="Complete seu cadastro para enviar mensagens"
+          btnLabel="Enviar"
           onSubmit={updateUserSubmit}
           onChange={handleUserChange}
         />

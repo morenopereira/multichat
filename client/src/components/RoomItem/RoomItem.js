@@ -4,13 +4,11 @@ import { routes } from '../../constants';
 
 import Button from '../Button';
 
-import styles from './RoomItem.module.scss';
-
 const { room } = routes;
 
 const RoomItem = ({ item }) => (
-  <li className={styles.item}>
-    <Button classNam={styles.a} color="darkGray" type="link" link={{ label: item, href: `${room}/${item}` }}>
+  <li>
+    <Button type="link" link={{ label: item, href: `${room}/${item}` }}>
       {item}
     </Button>
   </li>

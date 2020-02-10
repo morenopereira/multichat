@@ -20,11 +20,15 @@
   }
 }
 
-.darkGray {
-  border: 1px solid $gray;
-  color: $dark-gray;
-}
-
 .link {
   text-decoration: none;
+  background: $white;
+  color: $dark-gray;
+  padding: 0;
+
+  &:hover {
+    color: $primary-color;
+    transition: all 0.3s;
+    background: $white;
+  }
 }

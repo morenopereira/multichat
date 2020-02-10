@@ -5,16 +5,17 @@ import Input from '../Input';
 import Button from '../Button';
 import Form from '../Form';
 
-import styles from './CreateUserForm.module.scss';
+import styles from './UserForm.module.scss';
 
-const CreateUserForm = ({ onSubmit, completeSigin, title = 'Chat IO', btnLabel = 'Login', ...props }) => (
+const UserForm = ({ onSubmit, completeSigin, title = 'Chat IO', btnLabel = 'Login', ...props }) => (
   <Form onSubmit={onSubmit} className={styles.wrapper}>
-    <h3 className={styles.subTitle}>{title}</h3>
+    <h3 className={styles.title}>{title}</h3>
+    <h5>Crie um usuário para ter acesso as salas</h5>
     {completeSigin ? (
       <div className={styles.inputContainer}>
-        <Input name="email" className={styles.input} placeholder="Type your email" {...props} />
-        <Input name="name" className={styles.input} placeholder="Type your name" {...props} />
-        <Input name="birthday" className={styles.input} placeholder="Type your birthday" {...props} />
+        <Input name="email" className={styles.input} placeholder="Email" {...props} />
+        <Input name="name" className={styles.input} placeholder="Nome" {...props} />
+        <Input name="birthday" className={styles.input} placeholder="Aniversário" {...props} />
       </div>
     ) : (
       <Input placeholder="Digite seu apelido" {...props} />
@@ -25,11 +26,11 @@ const CreateUserForm = ({ onSubmit, completeSigin, title = 'Chat IO', btnLabel =
   </Form>
 );
 
-CreateUserForm.propTypes = {
+UserForm.propTypes = {
   onClick: func,
   title: string,
   completeSigin: bool,
   btnLabel: string,
 };
 
-export default CreateUserForm;
+export default UserForm;

@@ -8,7 +8,7 @@ import { createUser } from '../../redux/userReducers';
 import { routes } from '../../constants';
 
 import Container from '../../components/Container';
-import CreateUserForm from '../../components/CreateUserForm';
+import UserForm from '../../components/UserForm';
 
 const Home = ({ history, createUser }) => {
   const { rooms } = routes;
@@ -45,12 +45,7 @@ const Home = ({ history, createUser }) => {
 
   return (
     <Container flex align="center" direction="column">
-      <CreateUserForm
-        error={inputStatus}
-        onSubmit={handleSubmit}
-        onChange={handleInputChange}
-        value={userState.nickName}
-      />
+      <UserForm error={inputStatus} onSubmit={handleSubmit} onChange={handleInputChange} value={userState.nickName} />
     </Container>
   );
 };
