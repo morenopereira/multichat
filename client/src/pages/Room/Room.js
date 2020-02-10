@@ -32,7 +32,7 @@ const Room = ({ user, updateUser, getUser }) => {
 
   useEffect(() => {
     getUser();
-  }, [getUser]);
+  }, [getUser, user.restriction]);
 
   useEffect(() => {
     const handleNewMessage = newMessage => setMessages([...messages, newMessage]);
@@ -64,6 +64,13 @@ const Room = ({ user, updateUser, getUser }) => {
     }
   };
 
+  const logout = e => {
+    e.preventDefault();
+    userState.restriction = true;
+
+    updateUser({ ...user, ...userState });
+  };
+
   return (
     <Container flex direction="column" justify="between">
       <MessageList user={user} messages={messages} />
@@ -76,7 +83,7 @@ const Room = ({ user, updateUser, getUser }) => {
           onChange={handleUserChange}
         />
       ) : (
-        <RoomForm value={message.value} onSubmit={sendMessage} onChange={handleInputChange} />
+        <RoomForm value={message.value} onSubmit={sendMessage} onChange={handleInputChange} onLogout={logout} />
       )}
     </Container>
   );

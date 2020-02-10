@@ -7,19 +7,25 @@ import Form from '../Form';
 
 import styles from './RoomForm.module.scss';
 
-const RoomForm = ({ onSubmit, ...props }) => {
+const RoomForm = ({ onSubmit, onLogout, ...props }) => {
   return (
     <Form onSubmit={onSubmit} className={styles.wrapper}>
-      <Input name="message" className={styles.input} placeholder="Type a message" {...props} />
-      <Button onClick={onSubmit} className={styles.btn}>
-        Click
-      </Button>
+      <Input name="message" className={styles.input} placeholder="Digite uma mensagem" {...props} />
+      <div className={styles.btnsContainer}>
+        <Button onClick={onSubmit} className={styles.btn}>
+          Enviar
+        </Button>
+        <Button onClick={onLogout} color="warning" className={styles.btn}>
+          Deslogar
+        </Button>
+      </div>
     </Form>
   );
 };
 
 RoomForm.propTypes = {
-  onClick: func,
+  onSubmit: func,
+  onLogout: func,
 };
 
 export default RoomForm;

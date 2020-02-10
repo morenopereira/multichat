@@ -1,23 +1,28 @@
 @import '../../styles/variables';
 
 .primary,
-.link {
+.link,
+.warning {
   border-radius: 4px;
   padding: 12px;
   outline: none;
   cursor: pointer;
+  border: none;
+  font-weight: bold;
 }
 
 .primary {
   background: $secondary-color;
   color: $white;
-  font-weight: bold;
-  border: none;
 
   &:hover {
     background: $primary-color;
     transition: all 0.3s;
   }
+}
+
+.warning {
+  background: $warn-color;
 }
 
 .link {

@@ -21,8 +21,8 @@
 }
 
 .error {
-  color: $error-color-font;
-  background: $error-color;
+  color: $warn-color-font;
+  background: $warn-color;
   margin-bottom: 10px;
   font-size: 12px;
 }
