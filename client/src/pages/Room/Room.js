@@ -5,6 +5,7 @@ import { object } from 'prop-types';
 import io from 'socket.io-client';
 
 import { updateUser, getUser } from '../../redux/user';
+import { updaRoom } from '../../redux/rooms';
 
 import { apiURI } from '../../constants';
 
@@ -17,7 +18,7 @@ import Button from '../../components/Button';
 const socket = io(apiURI);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
-const Room = ({ user, updateUser, getUser }) => {
+const Room = ({ user, updateUser, getUser, updaRoom }) => {
   const [userState, setUserState] = useState({
     email: '',
     name: '',
@@ -51,6 +52,10 @@ const Room = ({ user, updateUser, getUser }) => {
     e.preventDefault();
 
     socket.emit('chat.message', message);
+
+    const roomId = localStorage.getItem('@chatio_room_id');
+
+    updaRoom([message], roomId);
     setMessage({ value: '' });
   };
 
@@ -118,12 +123,14 @@ Room.propTypes = {
 
 const mapStateToProps = ({ user }) => ({
   user: user.data,
+  // newRoom: room.newMessage,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     updateUser: bindActionCreators(updateUser, dispatch),
     getUser: bindActionCreators(getUser, dispatch),
+    updaRoom: bindActionCreators(updaRoom, dispatch),
   };
 };
 

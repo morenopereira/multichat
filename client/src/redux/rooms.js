@@ -27,6 +27,22 @@ export const createRoom = room => async dispatch => {
       room,
     });
 
+    localStorage.setItem('@chatio_room_id', data.room._id);
+
+    dispatch({ type: CREATE_ROOM, payload: data.room });
+  } catch (error) {
+    dispatch({ type: CREATE_ROOM_ERROR, error });
+  }
+};
+
+export const updaRoom = (messages, id) => async dispatch => {
+  try {
+    const { rooms } = apiRoutes;
+
+    const { data } = await api.put(`${rooms}/${id}`, {
+      messages,
+    });
+
     dispatch({ type: CREATE_ROOM, payload: data.room });
   } catch (error) {
     dispatch({ type: CREATE_ROOM_ERROR, error });
