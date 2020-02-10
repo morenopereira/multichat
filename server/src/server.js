@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -6,6 +7,8 @@ const http = require('http');
 const socket = require('socket.io');
 
 const routes = require('./routes');
+
+const { PORT, HOST } = process.env;
 
 const app = new express();
 
@@ -17,9 +20,6 @@ app.use(routes);
 
 const server = http.createServer(app);
 const io = socket(server);
-
-const PORT = 8080;
-const HOST = 'localhost';
 
 io.on('connection', socket => {
   socket.on('chat.message', data => io.emit('chat.message', data));

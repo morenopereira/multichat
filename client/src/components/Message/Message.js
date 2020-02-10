@@ -1,5 +1,5 @@
 import React from 'react';
-import { object } from 'prop-types';
+import { object, any } from 'prop-types';
 
 import styles from './Message.module.scss';
 
@@ -13,7 +13,7 @@ const Message = ({ message, user }) => (
 );
 
 Message.propTypes = {
-  message: object,
+  message: any,
   user: object,
 };
 
