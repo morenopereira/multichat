@@ -5,9 +5,9 @@ import { object } from 'prop-types';
 import io from 'socket.io-client';
 
 import { updateUser, getUser } from '../../redux/user';
-import { updaRoom } from '../../redux/rooms';
+import { updaRoom, getRoomsByName } from '../../redux/rooms';
 
-import { apiURI } from '../../constants';
+import { apiURI, routes } from '../../constants';
 
 import Container from '../../components/Container';
 import MessageForm from '../../components/MessageForm';
@@ -15,10 +15,12 @@ import MessageList from '../../components/MessageList';
 import CompleteRegister from '../../components/CompleteRegister';
 import Button from '../../components/Button';
 
+const splitUrl = (url, indexPath) => url.split('/')[indexPath];
+
 const socket = io(apiURI);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
-const Room = ({ user, updateUser, getUser, updaRoom }) => {
+const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom, history }) => {
   const [userState, setUserState] = useState({
     email: '',
     name: '',
@@ -33,9 +35,16 @@ const Room = ({ user, updateUser, getUser, updaRoom }) => {
     author: user.nickName,
   });
 
+  const roomName = splitUrl(history.location.pathname, 2);
+
   useEffect(() => {
     getUser();
-  }, [getUser, user.restriction]);
+    getRoomsByName(roomName);
+  }, [getUser, user.restriction, roomName, getRoomsByName]);
+
+  useEffect(() => {
+    setMessages(currentRoom !== undefined ? currentRoom.messages : []);
+  }, [currentRoom]);
 
   useEffect(() => {
     const handleNewMessage = newMessage => setMessages([...messages, newMessage]);
@@ -53,9 +62,7 @@ const Room = ({ user, updateUser, getUser, updaRoom }) => {
 
     socket.emit('chat.message', message);
 
-    const roomId = localStorage.getItem('@chatio_room_id');
-
-    updaRoom([message], roomId);
+    updaRoom({ name: roomName, messages: [message] }, currentRoom._id);
     setMessage({ value: '' });
   };
 
@@ -76,6 +83,11 @@ const Room = ({ user, updateUser, getUser, updaRoom }) => {
 
   const login = e => {
     e.preventDefault();
+
+    if (Object.keys(user).length === 0) {
+      history.push(routes.home);
+      return;
+    }
 
     userState.logged = true;
 
@@ -111,7 +123,7 @@ const Room = ({ user, updateUser, getUser, updaRoom }) => {
 
   return (
     <Container flex direction="column" justify="between">
-      <MessageList user={user} messages={messages} />
+      {messages !== undefined && <MessageList user={user} messages={messages} />}
       {renderActions()}
     </Container>
   );
@@ -121,9 +133,9 @@ Room.propTypes = {
   user: object,
 };
 
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user, room }) => ({
   user: user.data,
-  // newRoom: room.newMessage,
+  currentRoom: room.currentRoom,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -131,6 +143,7 @@ const mapDispatchToProps = dispatch => {
     updateUser: bindActionCreators(updateUser, dispatch),
     getUser: bindActionCreators(getUser, dispatch),
     updaRoom: bindActionCreators(updaRoom, dispatch),
+    getRoomsByName: bindActionCreators(getRoomsByName, dispatch),
   };
 };
 

@@ -27,8 +27,6 @@ export const createRoom = room => async dispatch => {
       room,
     });
 
-    localStorage.setItem('@chatio_room_id', data.room._id);
-
     dispatch({ type: CREATE_ROOM, payload: data.room });
   } catch (error) {
     dispatch({ type: CREATE_ROOM_ERROR, error });
@@ -61,11 +59,11 @@ export const getAllRooms = () => async dispatch => {
   }
 };
 
-export const getRoomsById = id => async dispatch => {
+export const getRoomsByName = name => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
-    const { data } = await api(`${rooms}/${id}`);
+    const { data } = await api(`${rooms}/${name}`);
 
     dispatch({ type: GET_ROOM, payload: data });
   } catch (error) {
@@ -100,7 +98,7 @@ export function room(state = INITIAL_STATE, action = {}) {
     case GET_ROOM:
       return {
         ...state,
-        currentRoom: action.payload,
+        currentRoom: action.payload[0],
       };
     case GET_ROOM_ERROR:
       return {

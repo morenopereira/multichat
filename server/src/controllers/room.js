@@ -21,9 +21,9 @@ const retrieveAll = async (req, res) => {
   }
 };
 
-const retrieveById = async (req, res) => {
+const retrieveByName = async (req, res) => {
   try {
-    const room = await Room.findById(req.params.id).populate('messages');
+    const room = await Room.find({ name: req.params.name }).populate('messages');
 
     return res.status(200).send(room);
   } catch (error) {
@@ -33,7 +33,7 @@ const retrieveById = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { name, messages } = req.body;
+    const { name, messages } = req.body.messages;
 
     const room = await Room.findByIdAndUpdate(req.params.id, { name }, { new: true }).populate('messages');
 
@@ -58,6 +58,6 @@ const update = async (req, res) => {
 module.exports = {
   create,
   retrieveAll,
-  retrieveById,
+  retrieveByName,
   update,
 };

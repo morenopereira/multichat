@@ -13,7 +13,7 @@ routes.delete('/users/:id', userController.deleteById);
 // Rooms
 routes.post('/rooms', roomController.create);
 routes.get('/rooms', roomController.retrieveAll);
-routes.get('/rooms/:id', roomController.retrieveById);
+routes.get('/rooms/:name', roomController.retrieveByName);
 routes.put('/rooms/:id', roomController.update);
 
 // Messages
