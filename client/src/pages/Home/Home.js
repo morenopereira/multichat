@@ -8,7 +8,7 @@ import { createUser } from '../../redux/userReducers';
 import { routes } from '../../constants';
 
 import Container from '../../components/Container';
-import UserForm from '../../components/UserForm';
+import LoginForm from '../../components/LoginForm';
 
 const Home = ({ history, createUser }) => {
   const { rooms } = routes;
@@ -39,13 +39,13 @@ const Home = ({ history, createUser }) => {
       createUser(userState);
       history.push(rooms);
     } else {
-      setInputStatus({ error: true, message: 'Please enter your nickname' });
+      setInputStatus({ error: true, message: 'Inserira um nick name' });
     }
   };
 
   return (
     <Container flex align="center" direction="column">
-      <UserForm error={inputStatus} onSubmit={handleSubmit} onChange={handleInputChange} value={userState.nickName} />
+      <LoginForm error={inputStatus} onSubmit={handleSubmit} onChange={handleInputChange} value={userState.nickName} />
     </Container>
   );
 };

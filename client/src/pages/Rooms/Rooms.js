@@ -18,6 +18,11 @@ const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history }) => {
     message: [],
   });
 
+  const [inputStatus, setInputStatus] = useState({
+    error: false,
+    message: '',
+  });
+
   useEffect(() => {
     getAllRooms();
     getUser();
@@ -27,15 +32,21 @@ const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createRoom(room);
+
+    if (room.name.trim()) {
+      createRoom(room);
+      history.push(`${routes.room}/${room.name}`);
+    } else {
+      setInputStatus({ error: true, message: 'Insira um nome para da sala' });
+    }
+
     setRoom({ name: '' });
-    history.push(`${routes.room}/${room.name}`);
   };
 
   return (
     <Container flex direction="column" align="center">
       <h1>Salas</h1>
-      <CreateRoomForm value={room.name} onChange={handleInputChange} onSubmit={handleSubmit} />
+      <CreateRoomForm error={inputStatus} value={room.name} onChange={handleInputChange} onSubmit={handleSubmit} />
       {allrooms.length > 0 && <RoomsList title="Salas recentes" rooms={allrooms} />}
     </Container>
   );

@@ -15,23 +15,6 @@
     text-align: center;
   }
 
-  .inputContainer {
-    width: 100%;
-
-    @media (min-width: 768px) {
-      display: flex;
-      justify-content: center;
-    }
-  }
-
-  .input {
-    margin: 0 10px;
-
-    @media (max-width: 767px) {
-      margin: 5px 0;
-    }
-  }
-
   .btn {
     margin: 20px 0;
     width: 100%;

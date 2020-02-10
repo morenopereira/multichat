@@ -5,7 +5,7 @@ import Input from '../Input';
 import Button from '../Button';
 import Form from '../Form';
 
-import styles from './RoomForm.module.scss';
+import styles from './MessageForm.module.scss';
 
 const RoomForm = ({ onSubmit, onLogout, ...props }) => {
   return (

@@ -11,5 +11,3 @@ export const apiRoutes = {
   users: '/users',
   rooms: '/rooms',
 };
-
-export const socketUri = 'http://localhost:8080';

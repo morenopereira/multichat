@@ -1,7 +1,6 @@
 .wrapper {
-  height: 100vh;
-  padding-right: 15px;
-  padding-left: 15px;
+  height: calc(100vh - 30px);
+  padding: 15px;
   margin-right: auto;
   margin-left: auto;
 

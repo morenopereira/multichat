@@ -6,14 +6,15 @@ import io from 'socket.io-client';
 
 import { updateUser, getUser } from '../../redux/userReducers';
 
-import { socketUri } from '../../constants';
+import { apiURI } from '../../constants';
 
 import Container from '../../components/Container';
-import RoomForm from '../../components/RoomForm';
+import MessageForm from '../../components/MessageForm';
 import MessageList from '../../components/MessageList';
-import UserForm from '../../components/UserForm';
+import CompleteRegister from '../../components/CompleteRegister';
+import Button from '../../components/Button';
 
-const socket = io(socketUri);
+const socket = io(apiURI);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
 const Room = ({ user, updateUser, getUser }) => {
@@ -21,6 +22,7 @@ const Room = ({ user, updateUser, getUser }) => {
     email: '',
     name: '',
     birthday: '',
+    logged: false,
   });
 
   const [messages, setMessages] = useState([]);
@@ -59,32 +61,51 @@ const Room = ({ user, updateUser, getUser }) => {
 
     if (validateInput) {
       userState.restriction = false;
+      userState.logged = true;
 
       updateUser({ ...user, ...userState });
     }
   };
 
-  const logout = e => {
+  const login = e => {
     e.preventDefault();
-    userState.restriction = true;
+
+    userState.logged = true;
 
     updateUser({ ...user, ...userState });
   };
 
-  return (
-    <Container flex direction="column" justify="between">
-      <MessageList user={user} messages={messages} />
-      {user.restriction ? (
-        <UserForm
-          completeSigin
+  const logOut = e => {
+    e.preventDefault();
+
+    userState.logged = false;
+
+    updateUser({ ...user, ...userState });
+  };
+
+  const renderActions = () => {
+    if (user.restriction) {
+      return (
+        <CompleteRegister
           title="Complete seu cadastro para enviar mensagens"
           btnLabel="Enviar"
           onSubmit={updateUserSubmit}
           onChange={handleUserChange}
         />
-      ) : (
-        <RoomForm value={message.value} onSubmit={sendMessage} onChange={handleInputChange} onLogout={logout} />
-      )}
+      );
+    } else if (!user.restriction && !user.logged) {
+      return <Button onClick={login}>Logar</Button>;
+    } else {
+      return (
+        <MessageForm value={message.value} onSubmit={sendMessage} onChange={handleInputChange} onLogout={logOut} />
+      );
+    }
+  };
+
+  return (
+    <Container flex direction="column" justify="between">
+      <MessageList user={user} messages={messages} />
+      {renderActions()}
     </Container>
   );
 };
