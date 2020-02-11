@@ -4,8 +4,10 @@ import { apiRoutes } from '../constants';
 const CREATE_ROOM = 'CREATE_ROOM';
 const CREATE_ROOM_ERROR = 'CREATE_USER_ERROR';
 const GET_ROOMS = 'GET_ROOMS';
+const GET_ROOMS_SUCCESS = 'GET_ROOMS_SUCCESS';
 const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
 const GET_ROOM = 'GET_ROOM';
+const GET_ROOM_SUCCESS = 'GET_ROOM_SUCCESS';
 const GET_ROOM_ERROR = 'GET_ROOM_ERROR';
 
 const INITIAL_STATE = {
@@ -17,6 +19,7 @@ const INITIAL_STATE = {
   serverError: false,
   rooms: [],
   currentRoom: {},
+  loading: false
 };
 
 export const createRoom = room => async dispatch => {
@@ -46,24 +49,26 @@ export const updaRoom = (messageInfos, id) => async dispatch => {
 };
 
 export const getAllRooms = () => async dispatch => {
+  dispatch({ type: GET_ROOMS });
   try {
     const { rooms } = apiRoutes;
 
     const { data } = await api(rooms);
 
-    dispatch({ type: GET_ROOMS, payload: data });
+    dispatch({ type: GET_ROOMS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_ROOMS_ERROR, error });
   }
 };
 
 export const getRoomsByName = name => async dispatch => {
+  dispatch({ type: GET_ROOM });
   try {
     const { rooms } = apiRoutes;
 
     const { data } = await api(`${rooms}/${name}`);
 
-    dispatch({ type: GET_ROOM, payload: data });
+    dispatch({ type: GET_ROOM_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_ROOM_ERROR, error });
   }
@@ -74,18 +79,25 @@ export function room(state = INITIAL_STATE, action = {}) {
     case CREATE_ROOM:
       return {
         ...state,
-        newRoom: action.payload,
+        currentRoom: action.payload,
       };
     case CREATE_ROOM_ERROR:
       return {
         ...state,
-        newRoom: {},
+        currentRoom: {},
         serverError: true,
       };
     case GET_ROOMS:
       return {
         ...state,
+        rooms: [],
+        loading: true
+      };
+    case GET_ROOMS_SUCCESS:
+      return {
+        ...state,
         rooms: action.payload,
+        loading: false
       };
     case GET_ROOMS_ERROR:
       return {
@@ -96,7 +108,14 @@ export function room(state = INITIAL_STATE, action = {}) {
     case GET_ROOM:
       return {
         ...state,
+        currentRoom: [],
+        loading: true
+      };
+    case GET_ROOM_SUCCESS:
+      return {
+        ...state,
         currentRoom: action.payload[0],
+        loading: false
       };
     case GET_ROOM_ERROR:
       return {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { object } from 'prop-types';
+import { object, func, bool } from 'prop-types';
 import io from 'socket.io-client';
 
 import { updateUser, getUser } from '../../redux/user';
@@ -14,13 +14,14 @@ import MessageForm from '../../components/MessageForm';
 import MessageList from '../../components/MessageList';
 import CompleteRegister from '../../components/CompleteRegister';
 import Button from '../../components/Button';
+import Loader from '../../components/Loader';
 
 const splitUrl = (url, indexPath) => url.split('/')[indexPath];
 
 const socket = io(apiURI);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
-const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom, history }) => {
+const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom, history, loading }) => {
   const [userState, setUserState] = useState({
     email: '',
     name: '',
@@ -107,7 +108,7 @@ const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom
       return (
         <CompleteRegister
           title="Complete seu cadastro para enviar mensagens"
-          btnLabel="Enviar"
+          btnLabel="Entrar"
           onSubmit={updateUserSubmit}
           onChange={handleUserChange}
         />
@@ -123,19 +124,33 @@ const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom
 
   return (
     <Container flex direction="column" justify="between">
-      {messages !== undefined && <MessageList user={user} messages={messages} />}
-      {renderActions()}
+      {loading ? (
+        <Loader minHeight />
+      ) : (
+        <>
+          {messages !== undefined && <MessageList user={user} messages={messages} />}
+          {renderActions()}
+        </>
+      )}
     </Container>
   );
 };
 
 Room.propTypes = {
   user: object,
+  updateUser: func, 
+  getUser: func, 
+  updaRoom: func, 
+  getRoomsByName: func, 
+  currentRoom: object, 
+  history: object, 
+  loading: bool
 };
 
 const mapStateToProps = ({ user, room }) => ({
   user: user.data,
   currentRoom: room.currentRoom,
+  loading: room.loading
 });
 
 const mapDispatchToProps = dispatch => {
