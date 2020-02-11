@@ -27,4 +27,4 @@ io.on('connection', socket => {
   socket.on('disconnect', () => console.log('[Socket] disconnected'));
 });
 
-server.listen(PORT, HOST, () => console.log(`Server is running at ${HOST}:${PORT}`));
+server.listen(8080, HOST, () => console.log(`Server is running at ${HOST}:${PORT}`));
