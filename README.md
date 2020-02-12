@@ -7,18 +7,28 @@ Projeto de exemplo usando NodeJS, ReactJS, SocketIO, Docket e MongoDB.
 ## Dependencies
 
 - Node.js 10+
-- MongoDB
+- MongoDB - (I'm using Mongo Atlas to facilitate)
 
 ## Envs
 
-PORT=PORT
-HOST=localhost
-MONGOURI=mongodb+srv://moreno:moreno@cluster0-nqtoh.mongodb.net/test?retryWrites=true&w=majority
+- PORT=PORT
+- HOST=localhost
+- MONGOURI=mongodb+srv://moreno:moreno@cluster0-nqtoh.mongodb.net/test?retryWrites=true&w=majority
 
 ## Running the project
 
-1. `cd server && npm i && npm start`
+### Server
+
+1. `cp .env.default .env` (And alter vars as needed)
+2. `cd server && npm i && npm start`
+
+### Client
+
 2. `cd client && npm i && npm start`
+
+## Running storybook
+
+1. `npm run storybook`
 
 ## Consultation routes
 
@@ -35,3 +45,7 @@ Users
 Messages
 
 1. `/messages` List of all messages sent
+
+## Problems
+
+- I created a docker compose, but for some problem it is not working.
