@@ -22,7 +22,7 @@ const INITIAL_STATE = {
   loading: false,
 };
 
-export const createRoom = (room) => async (dispatch) => {
+export const createRoom = room => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
@@ -34,7 +34,7 @@ export const createRoom = (room) => async (dispatch) => {
   }
 };
 
-export const updaRoom = (messageInfos, id) => async (dispatch) => {
+export const updaRoom = (messageInfos, id) => async dispatch => {
   try {
     const { rooms } = apiRoutes;
 
@@ -48,7 +48,7 @@ export const updaRoom = (messageInfos, id) => async (dispatch) => {
   }
 };
 
-export const getAllRooms = () => async (dispatch) => {
+export const getAllRooms = () => async dispatch => {
   dispatch({ type: GET_ROOMS });
   try {
     const { rooms } = apiRoutes;
@@ -61,7 +61,7 @@ export const getAllRooms = () => async (dispatch) => {
   }
 };
 
-export const getRoomsByName = (name) => async (dispatch) => {
+export const getRoomsByName = name => async dispatch => {
   dispatch({ type: GET_ROOM });
   try {
     const { rooms } = apiRoutes;

@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import { updateUser, getUser } from '../../redux/user';
 import { updaRoom, getRoomsByName } from '../../redux/rooms';
 
-import { apiURI, routes } from '../../constants';
+import { routes } from '../../constants';
 
 import Container from '../../components/Container';
 import MessageForm from '../../components/MessageForm';
@@ -18,7 +18,7 @@ import Loader from '../../components/Loader';
 
 const splitUrl = (url, indexPath) => url.split('/')[indexPath];
 
-const socket = io(apiURI);
+const socket = io(process.env.REACT_APP_API_URL);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
 const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom, history, loading }) => {
@@ -44,7 +44,7 @@ const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom
   }, [getUser, user.restriction, roomName, getRoomsByName]);
 
   useEffect(() => {
-    setMessages(currentRoom !== undefined ? currentRoom.messages : []);
+    setMessages(currentRoom !== undefined && currentRoom.messages);
   }, [currentRoom]);
 
   useEffect(() => {

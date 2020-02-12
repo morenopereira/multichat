@@ -1,13 +1,27 @@
-version: "3"
+version: "3.7"
+
 services:
   client:
-    build: ./client
+    container_name: client
+    build:
+      context: .
+      target: development
+      dockerfile: ./client/Dockerfile
+    volumes:
+      - ./client/src:/client/src
+      - ./client/public:/client/bin
     ports:
-      - "3000:3000"
-    depends_on:
-      - server
+      - 3000:3000
+    env_file:
+      - ./client/.env
   server:
-    env_file: ./server/.env
-    build: ./server
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    volumes:
+      - ./server/src:/server/src
     ports:
-      - "8080:8080"
+      - 8080:8080
+    env_file:
+      - ./server/.env

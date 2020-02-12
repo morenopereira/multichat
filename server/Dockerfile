@@ -1,12 +1,14 @@
-FROM node:alpine
+FROM node:10.15.3-alpine
 
-WORKDIR /usr/src/app
+ARG PORT
 
-COPY package*.json ./
+ENV PORT=$PORT
 
-RUN npm install --silent
-
-COPY . .
+WORKDIR /server/
+COPY ./server/*.json ./server/*.lock /server/
+RUN yarn --pure-lockfile
+COPY ./server/src /server/src/
 
 EXPOSE 8080
-CMD ["npm", "start"]
+
+CMD ["yarn", "start"]

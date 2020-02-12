@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Projeto de exemplo usando NodeJS, ReactJS, SocketIO, Docket e MongoDB.
+Exemple project using NodeJS, ReactJS, SocketIO, Docket e MongoDB.
 
 ## Dependencies
 
@@ -26,6 +26,10 @@ Projeto de exemplo usando NodeJS, ReactJS, SocketIO, Docket e MongoDB.
 
 2. `cd client && npm i && npm start`
 
+## Running the project with Docker compose
+
+1. `docker-compose up`
+
 ## Running storybook
 
 1. `npm run storybook`
@@ -45,7 +49,3 @@ Users
 Messages
 
 1. `/messages` List of all messages sent
-
-## Problems
-
-- I created a docker compose, but for some problem it is not working.
