@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateRoomForm /> renders correctly 1`] = `
+<form
+  className="wrapper"
+>
+  <input
+    className="wrapper "
+    data-testid="input"
+    placeholder="Nome da sala"
+  />
+  <button
+    className="btn primary"
+    data-testid="btn"
+  >
+    Criar sala
+  </button>
+</form>
+`;

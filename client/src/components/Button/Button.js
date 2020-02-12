@@ -10,7 +10,7 @@ const Button = ({ children, className, color = 'primary', onClick, type, link })
       {link.label}
     </Link>
   ) : (
-    <button onClick={onClick} className={`${className} ${color && styles[color]}`}>
+    <button data-testid='btn' onClick={onClick} className={`${className} ${color && styles[color]}`}>
       {children}
     </button>
   );

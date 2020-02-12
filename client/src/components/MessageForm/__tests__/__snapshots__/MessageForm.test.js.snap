@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageForm /> renders correctly 1`] = `
+<form
+  className="wrapper"
+>
+  <input
+    className="wrapper input"
+    data-testid="input"
+    name="message"
+    placeholder="Digite uma mensagem"
+  />
+  <div
+    className="btnsContainer"
+  >
+    <button
+      className="btn primary"
+      data-testid="btn"
+    >
+      Enviar
+    </button>
+    <button
+      className="btn warning"
+      data-testid="btn"
+    >
+      Deslogar
+    </button>
+  </div>
+</form>
+`;

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Message /> renders correctly 1`] = `
+<li
+  className="item"
+>
+  <div
+    className="messageContainer false"
+  >
+    <strong
+      className="author"
+    >
+      Joe
+    </strong>
+    <span
+      className="value"
+    >
+      Hello
+    </span>
+  </div>
+</li>
+`;

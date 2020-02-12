@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CompleteRegister /> renders correctly 1`] = `
+<form
+  className="wrapper"
+>
+  <h3
+    className="title"
+  >
+    Chat IO
+  </h3>
+  <div
+    className="inputContainer"
+  >
+    <input
+      className="wrapper input"
+      data-testid="input"
+      name="email"
+      placeholder="Email"
+    />
+    <input
+      className="wrapper input"
+      data-testid="input"
+      name="name"
+      placeholder="Nome"
+    />
+    <input
+      className="wrapper input"
+      data-testid="input"
+      name="birthday"
+      placeholder="Aniversário"
+    />
+  </div>
+  <button
+    className="btn primary"
+    data-testid="btn"
+  >
+    Login
+  </button>
+</form>
+`;

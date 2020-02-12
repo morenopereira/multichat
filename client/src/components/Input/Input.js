@@ -8,6 +8,7 @@ const Input = ({ name, onChange, value, placeholder, className, error }) => (
     {error && error.error && <div className={styles.error}>{error.message}</div>}
     <input
       className={`${styles.wrapper} ${className}`}
+      data-testid='input'
       name={name}
       onChange={onChange}
       value={value}

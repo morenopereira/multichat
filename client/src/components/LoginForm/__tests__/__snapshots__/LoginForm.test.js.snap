@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm /> renders correctly 1`] = `
+<form
+  className="wrapper"
+>
+  <h3
+    className="title"
+  >
+    Chat IO
+  </h3>
+  <h5>
+    Crie um usuário para ter acesso as salas
+  </h5>
+  <input
+    className="wrapper "
+    data-testid="input"
+    placeholder="Digite seu apelido"
+  />
+  <button
+    className="btn primary"
+    data-testid="btn"
+  >
+    Login
+  </button>
+</form>
+`;

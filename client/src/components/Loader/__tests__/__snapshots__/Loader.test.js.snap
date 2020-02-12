@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Loader /> renders correctly 1`] = `
+<div
+  className="ldsRing undefined"
+>
+  <div
+    style={
+      Object {
+        "border": "6px solid #fff",
+        "borderColor": "#008d61 transparent transparent transparent",
+        "height": "51px",
+        "width": "51px",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "border": "6px solid #fff",
+        "borderColor": "#008d61 transparent transparent transparent",
+        "height": "51px",
+        "width": "51px",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "border": "6px solid #fff",
+        "borderColor": "#008d61 transparent transparent transparent",
+        "height": "51px",
+        "width": "51px",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "border": "6px solid #fff",
+        "borderColor": "#008d61 transparent transparent transparent",
+        "height": "51px",
+        "width": "51px",
+      }
+    }
+  />
+</div>
+`;

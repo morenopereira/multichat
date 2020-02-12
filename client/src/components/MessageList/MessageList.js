@@ -6,7 +6,7 @@ import Message from '../Message';
 import styles from './MessageList.module.scss';
 
 const MessageList = ({ messages, user }) => (
-  <ul className={styles.wrapper}>
+  <ul data-testid='list' className={styles.wrapper}>
     {messages.map((message, index) => (
       <Message user={user} key={index} message={message} />
     ))}

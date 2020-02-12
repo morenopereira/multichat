@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> renders correctly 1`] = `
+<button
+  className="undefined primary"
+  data-testid="btn"
+>
+  Click here
+</button>
+`;
+
+exports[`<Button /> should render a submit button 1`] = `
+<button
+  className="undefined primary"
+  data-testid="btn"
+>
+  Click here
+</button>
+`;

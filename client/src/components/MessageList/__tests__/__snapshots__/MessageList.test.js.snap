@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageList /> renders correctly 1`] = `
+<ul
+  className="wrapper"
+  data-testid="list"
+>
+  <li
+    className="item"
+  >
+    <div
+      className="messageContainer false"
+    >
+      <strong
+        className="author"
+      >
+        joe
+      </strong>
+      <span
+        className="value"
+      >
+        hi
+      </span>
+    </div>
+  </li>
+</ul>
+`;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Container /> renders correctly 1`] = `
+<main
+  className="
+    wrapper
+    undefined
+    undefined
+    undefined
+    undefined"
+>
+  <h1>
+    Hello
+  </h1>
+</main>
+`;
