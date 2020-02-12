@@ -113,13 +113,11 @@ const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom
           onChange={handleUserChange}
         />
       );
-    } else if (!user.restriction && !user.logged) {
-      return <Button onClick={login}>Logar</Button>;
-    } else {
-      return (
-        <MessageForm value={message.value} onSubmit={sendMessage} onChange={handleInputChange} onLogout={logOut} />
-      );
     }
+    if (!user.restriction && !user.logged) {
+      return <Button onClick={login}>Logar</Button>;
+    }
+    return <MessageForm value={message.value} onSubmit={sendMessage} onChange={handleInputChange} onLogout={logOut} />;
   };
 
   return (
@@ -138,28 +136,26 @@ const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom
 
 Room.propTypes = {
   user: object,
-  updateUser: func, 
-  getUser: func, 
-  updaRoom: func, 
-  getRoomsByName: func, 
-  currentRoom: object, 
-  history: object, 
-  loading: bool
+  updateUser: func,
+  getUser: func,
+  updaRoom: func,
+  getRoomsByName: func,
+  currentRoom: object,
+  history: object,
+  loading: bool,
 };
 
 const mapStateToProps = ({ user, room }) => ({
   user: user.data,
   currentRoom: room.currentRoom,
-  loading: room.loading
+  loading: room.loading,
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateUser: bindActionCreators(updateUser, dispatch),
-    getUser: bindActionCreators(getUser, dispatch),
-    updaRoom: bindActionCreators(updaRoom, dispatch),
-    getRoomsByName: bindActionCreators(getRoomsByName, dispatch),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  updateUser: bindActionCreators(updateUser, dispatch),
+  getUser: bindActionCreators(getUser, dispatch),
+  updaRoom: bindActionCreators(updaRoom, dispatch),
+  getRoomsByName: bindActionCreators(getRoomsByName, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

@@ -19,7 +19,7 @@ const INITIAL_STATE = {
   serverError: false,
   rooms: [],
   currentRoom: {},
-  loading: false
+  loading: false,
 };
 
 export const createRoom = room => async dispatch => {
@@ -91,13 +91,13 @@ export function room(state = INITIAL_STATE, action = {}) {
       return {
         ...state,
         rooms: [],
-        loading: true
+        loading: true,
       };
     case GET_ROOMS_SUCCESS:
       return {
         ...state,
         rooms: action.payload,
-        loading: false
+        loading: false,
       };
     case GET_ROOMS_ERROR:
       return {
@@ -109,13 +109,13 @@ export function room(state = INITIAL_STATE, action = {}) {
       return {
         ...state,
         currentRoom: [],
-        loading: true
+        loading: true,
       };
     case GET_ROOM_SUCCESS:
       return {
         ...state,
         currentRoom: action.payload[0],
-        loading: false
+        loading: false,
       };
     case GET_ROOM_ERROR:
       return {

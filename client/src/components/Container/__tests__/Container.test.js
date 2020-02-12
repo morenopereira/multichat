@@ -1,7 +1,6 @@
 import React from 'react';
-import Container from '../Container';
 import renderer from 'react-test-renderer';
-import { unmountComponentAtNode } from "react-dom";
+import Container from '../Container';
 
 describe('<Container />', () => {
   it('renders correctly', () => {

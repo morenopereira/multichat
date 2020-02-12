@@ -7,10 +7,14 @@
   "plugins": ["react", "jsx-a11y", "import"],
   "extends": "airbnb",
   "rules": {
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
     "global-require": "off",
     "import/prefer-default-export": "off",
-    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
-    "max-len": 120
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }]
   }
 }

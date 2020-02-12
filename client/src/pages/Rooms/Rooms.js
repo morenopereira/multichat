@@ -69,15 +69,13 @@ Rooms.propTypes = {
 
 const mapStateToProps = ({ room }) => ({
   allrooms: room.rooms,
-  loading: room.loading
+  loading: room.loading,
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createRoom: bindActionCreators(createRoom, dispatch),
-    getAllRooms: bindActionCreators(getAllRooms, dispatch),
-    getUser: bindActionCreators(getUser, dispatch),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  createRoom: bindActionCreators(createRoom, dispatch),
+  getAllRooms: bindActionCreators(getAllRooms, dispatch),
+  getUser: bindActionCreators(getUser, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rooms);

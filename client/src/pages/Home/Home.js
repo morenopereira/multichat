@@ -55,10 +55,8 @@ Home.propTypes = {
   createUser: func,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createUser: bindActionCreators(createUser, dispatch),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  createUser: bindActionCreators(createUser, dispatch),
+});
 
 export default connect(null, mapDispatchToProps)(Home);

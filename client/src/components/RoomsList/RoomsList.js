@@ -1,7 +1,7 @@
 import React from 'react';
 import { node } from 'prop-types';
 
-import RoomItem from '../../components/RoomItem';
+import RoomItem from '../RoomItem';
 
 import styles from './RoomsList.module.scss';
 
