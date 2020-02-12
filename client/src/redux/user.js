@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   serverError: false,
 };
 
-export const createUser = user => async dispatch => {
+export const createUser = (user) => async (dispatch) => {
   try {
     const { users } = apiRoutes;
 
@@ -27,7 +27,7 @@ export const createUser = user => async dispatch => {
   }
 };
 
-export const getUser = () => async dispatch => {
+export const getUser = () => async (dispatch) => {
   try {
     const { users } = apiRoutes;
 
@@ -41,7 +41,7 @@ export const getUser = () => async dispatch => {
   }
 };
 
-export const updateUser = user => async dispatch => {
+export const updateUser = (user) => async (dispatch) => {
   try {
     const { users } = apiRoutes;
 

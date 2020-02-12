@@ -1,6 +1,6 @@
 const http = require('http');
 const socket = require('socket.io');
-const app = require('./app')
+const app = require('./app');
 
 const { PORT, HOST } = process.env;
 

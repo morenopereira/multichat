@@ -3,7 +3,9 @@ import { number, string } from 'prop-types';
 
 import styles from './Loader.module.scss';
 
-const Loader = ({ size = 51, weight = 6, color = '#008d61', minHeight }) => (
+const Loader = ({
+  size = 51, weight = 6, color = '#008d61', minHeight,
+}) => (
   <div className={`${styles.ldsRing} ${minHeight && styles.minHeight}`}>
     <div
       style={{

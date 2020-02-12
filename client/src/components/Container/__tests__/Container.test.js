@@ -8,7 +8,7 @@ describe('<Container />', () => {
       .create(
         <Container>
           <h1>Hello</h1>
-        </Container>
+        </Container>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

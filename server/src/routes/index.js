@@ -5,7 +5,7 @@ const messageController = require('../controllers/message');
 
 // Heathcheck
 routes.get('/heathCheck', (req, res) => {
-  res.status(200).send("Up!");
+  res.status(200).send('Up!');
 });
 
 // Users

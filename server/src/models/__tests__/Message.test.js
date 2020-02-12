@@ -1,12 +1,12 @@
-const Message = require('../Message')
+const Message = require('../Message');
 
 describe('Message model test', () => {
-  it ('Create message', async () => {
+  it('Create message', async () => {
     const message = await Message.create({
       value: 'exemple',
-      author: 'joe'
-    })
+      author: 'joe',
+    });
 
-    expect(message.value).toBe('exemple')
-  })
-})
+    expect(message.value).toBe('exemple');
+  });
+});

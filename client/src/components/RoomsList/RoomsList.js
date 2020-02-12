@@ -9,7 +9,7 @@ const RoomsList = ({ rooms, title }) => (
   <div className={styles.wrapper}>
     <h2>{title}</h2>
     <ul className={styles.list}>
-      {rooms.map(room => (
+      {rooms.map((room) => (
         <RoomItem key={room._id} item={room.name} />
       ))}
     </ul>

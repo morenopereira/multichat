@@ -30,9 +30,9 @@ const Home = ({ history, createUser }) => {
     }
   }, [history, userExist, rooms]);
 
-  const handleInputChange = e => setUser({ nickName: e.target.value });
+  const handleInputChange = (e) => setUser({ nickName: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (userState.nickName.trim()) {
@@ -55,7 +55,7 @@ Home.propTypes = {
   createUser: func,
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   createUser: bindActionCreators(createUser, dispatch),
 });
 

@@ -4,16 +4,17 @@ import { string, func, object } from 'prop-types';
 
 import styles from './Button.module.scss';
 
-const Button = ({ children, className, color = 'primary', onClick, type, link }) =>
-  type === 'link' ? (
-    <Link className={`${styles.link} ${color && styles[color]}`} to={link.href}>
-      {link.label}
-    </Link>
-  ) : (
-    <button data-testid="btn" onClick={onClick} className={`${className} ${color && styles[color]}`}>
-      {children}
-    </button>
-  );
+const Button = ({
+  children, className, color = 'primary', onClick, type, link,
+}) => (type === 'link' ? (
+  <Link className={`${styles.link} ${color && styles[color]}`} to={link.href}>
+    {link.label}
+  </Link>
+) : (
+  <button data-testid="btn" onClick={onClick} className={`${className} ${color && styles[color]}`}>
+    {children}
+  </button>
+));
 
 Button.propTypes = {
   children: string,

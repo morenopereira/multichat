@@ -1,12 +1,12 @@
-const Room = require('../Room')
+const Room = require('../Room');
 
 describe('Room model test', () => {
-  it ('Create room', async () => {
+  it('Create room', async () => {
     const room = await Room.create({
       name: 'exemple room',
-      messages: []
-    })
+      messages: [],
+    });
 
-    expect(room.name).toBe('exemple room')
-  })
-})
+    expect(room.name).toBe('exemple room');
+  });
+});
