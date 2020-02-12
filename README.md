@@ -49,3 +49,7 @@ Users
 Messages
 
 1. `/messages` List of all messages sent
+
+## Problems
+
+1. The database connection url is set directly in the file because when I run the server tests, for some reason the server cannot connect.

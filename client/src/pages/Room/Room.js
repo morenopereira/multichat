@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { object, func, bool } from 'prop-types';
+import { object, func, bool, any } from 'prop-types';
 import io from 'socket.io-client';
 
 import { updateUser, getUser } from '../../redux/user';
@@ -142,7 +142,7 @@ Room.propTypes = {
   getUser: func,
   updaRoom: func,
   getRoomsByName: func,
-  currentRoom: object,
+  currentRoom: any,
   history: object,
   loading: bool,
 };
