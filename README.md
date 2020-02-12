@@ -1,6 +1,6 @@
 # ChatIO
 
-## Descrição
+## Description
 
 Exemple project using NodeJS, ReactJS, SocketIO, Docket e MongoDB.
 
