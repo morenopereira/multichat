@@ -1,21 +1,8 @@
-require('dotenv').config();
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const morgan = require('morgan');
 const http = require('http');
 const socket = require('socket.io');
-
-const routes = require('./routes');
+const app = require('./app')
 
 const { PORT, HOST } = process.env;
-
-const app = require('./app');
-
-app.use(cors());
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(routes);
 
 const server = http.createServer(app);
 const io = socket(server);
