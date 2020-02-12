@@ -21,9 +21,7 @@ const splitUrl = (url, indexPath) => url.split('/')[indexPath];
 const socket = io(apiURI);
 socket.on('connect', () => console.log('[IO] Connect => A new connection has been established'));
 
-const Room = ({
-  user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom, history, loading,
-}) => {
+const Room = ({ user, updateUser, getUser, updaRoom, getRoomsByName, currentRoom, history, loading }) => {
   const [userState, setUserState] = useState({
     email: '',
     name: '',
@@ -50,26 +48,28 @@ const Room = ({
   }, [currentRoom]);
 
   useEffect(() => {
-    const handleNewMessage = (newMessage) => setMessages([...messages, newMessage]);
+    const handleNewMessage = newMessage => setMessages([...messages, newMessage]);
 
     socket.on('chat.message', handleNewMessage);
     return () => socket.off('chat.message');
   }, [messages]);
 
-  const handleInputChange = (e) => setMessage({ value: e.target.value, author: user.nickName });
+  const handleInputChange = e => setMessage({ value: e.target.value, author: user.nickName });
 
-  const handleUserChange = (e) => setUserState({ ...userState, [e.target.name]: e.target.value });
+  const handleUserChange = e => setUserState({ ...userState, [e.target.name]: e.target.value });
 
-  const sendMessage = (e) => {
+  const sendMessage = e => {
     e.preventDefault();
 
-    socket.emit('chat.message', message);
+    if (message.value.trim()) {
+      socket.emit('chat.message', message);
 
-    updaRoom({ name: roomName, message }, currentRoom._id);
-    setMessage({ value: '' });
+      updaRoom({ name: roomName, message }, currentRoom._id);
+      setMessage({ value: '' });
+    }
   };
 
-  const updateUserSubmit = (e) => {
+  const updateUserSubmit = e => {
     e.preventDefault();
 
     const { email, name, birthday } = userState;
@@ -84,7 +84,7 @@ const Room = ({
     }
   };
 
-  const login = (e) => {
+  const login = e => {
     e.preventDefault();
 
     if (Object.keys(user).length === 0) {
@@ -97,7 +97,7 @@ const Room = ({
     updateUser({ ...user, ...userState });
   };
 
-  const logOut = (e) => {
+  const logOut = e => {
     e.preventDefault();
 
     userState.logged = false;
@@ -153,7 +153,7 @@ const mapStateToProps = ({ user, room }) => ({
   loading: room.loading,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   updateUser: bindActionCreators(updateUser, dispatch),
   getUser: bindActionCreators(getUser, dispatch),
   updaRoom: bindActionCreators(updaRoom, dispatch),
