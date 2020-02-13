@@ -11,9 +11,14 @@ Exemple project using NodeJS, ReactJS, SocketIO, Docket e MongoDB.
 
 ## Envs
 
+### Server
+
 - PORT=PORT
-- HOST=localhost
 - MONGOURI=mongodb+srv://moreno:moreno@cluster0-nqtoh.mongodb.net/test?retryWrites=true&w=majority
+
+### Client
+
+- REACT_APP_API_URL=http://localhost:8080
 
 ## Running the project
 
