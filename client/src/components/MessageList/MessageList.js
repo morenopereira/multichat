@@ -1,11 +1,11 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { array, object } from 'prop-types';
 
 import Message from '../Message';
 
 import styles from './MessageList.module.scss';
 
-const MessageList = ({ messages, user }) => (
+const MessageList = ({ messages = [], user }) => (
   <ul data-testid="list" className={styles.wrapper}>
     {messages.map((message, index) => (
       <Message user={user} key={index} message={message} />
@@ -14,7 +14,8 @@ const MessageList = ({ messages, user }) => (
 );
 
 MessageList.propTypes = {
-  children: node,
+  messages: array,
+  user: object,
 };
 
 export default MessageList;

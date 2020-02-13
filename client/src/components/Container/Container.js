@@ -3,9 +3,7 @@ import { node, bool, string } from 'prop-types';
 
 import styles from './Container.module.scss';
 
-const Container = ({
-  children, flex, direction, align, justify,
-}) => (
+const Container = ({ children, flex, direction, align, justify }) => (
   <main
     className={`
     ${styles.wrapper}

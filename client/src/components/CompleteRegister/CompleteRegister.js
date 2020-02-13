@@ -7,9 +7,7 @@ import Form from '../Form';
 
 import styles from './CompleteRegister.module.scss';
 
-const CompleteRegister = ({
-  onSubmit, title = 'Chat IO', btnLabel = 'Login', ...props
-}) => (
+const CompleteRegister = ({ onSubmit, title = 'Chat IO', btnLabel = 'Login', ...props }) => (
   <Form onSubmit={onSubmit} className={styles.wrapper}>
     <h3 className={styles.title}>{title}</h3>
     <div className={styles.inputContainer}>

@@ -13,9 +13,7 @@ import RoomsList from '../../components/RoomsList';
 import CreateRoomForm from '../../components/CreateRoomForm';
 import Loader from '../../components/Loader';
 
-const Rooms = ({
-  createRoom, allrooms, getAllRooms, getUser, history, loading,
-}) => {
+const Rooms = ({ createRoom, allrooms, getAllRooms, getUser, history, loading }) => {
   const [room, setRoom] = useState({
     name: '',
     message: [],
@@ -31,9 +29,9 @@ const Rooms = ({
     getUser();
   }, [getAllRooms, getUser]);
 
-  const handleInputChange = (e) => setRoom({ ...room, name: e.target.value });
+  const handleInputChange = e => setRoom({ ...room, name: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     if (room.name.trim()) {
@@ -74,7 +72,7 @@ const mapStateToProps = ({ room }) => ({
   loading: room.loading,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   createRoom: bindActionCreators(createRoom, dispatch),
   getAllRooms: bindActionCreators(getAllRooms, dispatch),
   getUser: bindActionCreators(getUser, dispatch),

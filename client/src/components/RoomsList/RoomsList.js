@@ -1,5 +1,5 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { array, string } from 'prop-types';
 
 import RoomItem from '../RoomItem';
 
@@ -9,7 +9,7 @@ const RoomsList = ({ rooms, title }) => (
   <div className={styles.wrapper}>
     <h2>{title}</h2>
     <ul className={styles.list}>
-      {rooms.map((room) => (
+      {rooms.map(room => (
         <RoomItem key={room._id} item={room.name} />
       ))}
     </ul>
@@ -17,7 +17,8 @@ const RoomsList = ({ rooms, title }) => (
 );
 
 RoomsList.propTypes = {
-  children: node,
+  rooms: array,
+  title: string,
 };
 
 export default RoomsList;
