@@ -11,8 +11,6 @@
 # misc
 *.log
 .DS_Store
-.env
-.env.*
 .env-docker
 yarn.lock
 .eslintcache
