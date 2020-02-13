@@ -1,8 +1,6 @@
 import React from 'react';
 import { object } from 'prop-types';
-import {
-  BrowserRouter, Route, Switch, Router,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Router } from 'react-router-dom';
 
 import { routes } from './constants';
 
@@ -11,9 +9,7 @@ import Rooms from './pages/Rooms';
 import Room from './pages/Room';
 
 const Routes = ({ history }) => {
-  const {
-    home, rooms, room, roomId,
-  } = routes;
+  const { home, rooms, room, roomId } = routes;
 
   return (
     <BrowserRouter>
