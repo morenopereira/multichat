@@ -1,6 +1,6 @@
 # ChatIO
 
-## Descrição
+## Description
 
 Exemple project using NodeJS, ReactJS, SocketIO, Docket e MongoDB.
 
@@ -19,8 +19,9 @@ Exemple project using NodeJS, ReactJS, SocketIO, Docket e MongoDB.
 
 ### Server
 
-1. `cp .env.default .env` (And alter vars as needed)
-2. `cd server && npm i && npm start`
+1. `cd server`
+2. `cp .env.default .env` (And alter vars as needed)
+3. `npm i && npm start`
 
 ### Client
 
