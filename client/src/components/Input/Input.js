@@ -3,7 +3,7 @@ import { string, func, object } from 'prop-types';
 
 import styles from './Input.module.scss';
 
-const Input = ({ name, onChange, value, placeholder, className, error }) => (
+const Input = ({ name, onChange, value, placeholder = '', className, error }) => (
   <>
     {error && error.error && <div className={styles.error}>{error.message}</div>}
     <input
@@ -16,11 +16,6 @@ const Input = ({ name, onChange, value, placeholder, className, error }) => (
     />
   </>
 );
-
-Input.defaultProps = {
-  placeholder: '',
-  className: '',
-};
 
 Input.propTypes = {
   onChange: func,
